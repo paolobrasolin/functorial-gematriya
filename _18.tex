@@ -1,0 +1,78 @@
+\begin{MyExercise}
+Sia $X$ uno spazio topologico. Mostrare che la corrispondenza che associa $U\subseteq X$ aperto all'insieme
+\[
+\mathcal C^0(U) = \{f\colon U\to \mathbb{R}\mid \text{ continua}\}
+\]
+\`e un funtore $\mathcal C^0\colon \cate{Op}(X)\to \Sets$, che soddisfa le seguenti due propriet\`a:
+\begin{itemize}
+\item Per ogni $U\in\cate{Op}(X)$ e ogni ricoprimento aperto $\{U_i\}$ di $U$, chiamando $\rho=\rho_{VW}=F(W\subseteq V)$ la funzione indotta tra $F(V)$ ed $F(W)$, si ha
+\[
+\forall i\in I\big(\rho_{U, U_i}(f) = \rho_{U, U_i}(g)\big)\quad \Rightarrow \quad f=g
+\]
+\item Per ogni $U\in\cate{Op}(X)$ e ogni ricoprimento aperto $\{U_i\}$ di $U$, data una famiglia di funzioni continue $\{f_i\colon U_i\to \mathbb R\}$ tali che
+\[
+\rho_{U_i, U_{ij}}(f_i) = \rho_{U_j, U_{ij}}(f_j)
+\]
+per ogni $i,j\in I$, allora esiste una funzione continua $f\colon U\to \mathbb R$ (e come corollario del primo punto, \`e unica) tale che $\rho_{U, U_i}(f)= f_i$ per ogni $i\in I$.
+\end{itemize}\end{MyExercise}
+Queste condizioni sono le \emph{condizioni di fascio}.
+\begin{df}
+Ogni funtore controvariante $F\colon \cate{Op}(X)\to \Sets$ che soddisfi le stesse due propriet\`a, per ogni elemento dell'insieme $F(U)$, si dice un \emph{fascio} su $X$.
+\end{df}
+
+Denotiamo con $i_{U,V}$ l'unico morfismo di $\cate{Op}(X)(U,V)$, ovvero la mappa (continua) di inclusione. Allora $\rho_{V,U}=C^0(i_{U,V})\colon C^0(V)\to C^0(U)$ è la precomposizione con $i_{U,V}$ e manda una funzione continua di dominio $V$ nella sua restrizione ad $U$, che denoteremo $f\vert_U=f\circ i_{U,V}$.
+
+Scriviamo in modo un po' più suggestivo le proprietà da verificare.
+
+La prima. Dato comunque un aperto $U\in\cate{Op}(X)$ ed un suo ricoprimento aperto $\{U_i\}_{i\in I}$ e due funzioni continue $f,g\in C^0(U)$,
+\[
+(\forall i\in I) \left(f\vert_{U_i}=g\vert_{U_i}\right) \Rightarrow (f=g)
+\]
+ovvero, se due funzioni continue coincidono ristrette ad ognuno degli aperti di un ricoprimento del dominio allora coincidono sull'intero dominio.
+È immediata da dimostrare, negata e srotolata:
+\[
+(\exists x\in U)(f(x)\neq g(x)) \Rightarrow (\exists i\in I)(\exists y\in U_i)(f\vert_{U_i}(y)\neq g\vert_{U_i}(y))
+\]
+infatti basta scegliere $i$ tale che $x\in U_i$, ovviamente possibile per le proprietà del ricoprimento, ed $y=x$.
+
+La seconda.
+Dato comunque un aperto $U\in\cate{Op}(X)$ ed un suo ricoprimento aperto $\{U_i\}_{i\in I}$ ed una famiglia di funzioni continue $\{f_i\colon U_i\to \mathbb R\}$,
+\[
+(\forall i,j\in I) \left(f_i\vert_{U_i\cap U_j}=f_j\vert_{U_i\cap U_j}\right) \Rightarrow (\exists! f\in C^0(U)\colon (\forall i\in I)(f\vert_{U_i}=f_i))
+\]
+La dimostrazione è leggermente più delicata.
+L'unicità di $f$ è immediata grazie alla prima proprietà.
+L'esistenza si potrebbe avere definendola come $f(x)=f_i(x)$ per ogni $x\in U_i$, possibile proprio per la condizione di compatibilità sulle intersezioni.
+Ma la continuità?
+Vale la pena di dedicare un poco di spazio al
+
+{\lem[Pasting] Siano $X$ ed $Y$ due spazi topologici, $\{U_i\}_{i\in I}$ un ricoprimento aperto di un aperto $U\subseteq X$ ed $\{f_i\colon U_i\to Y\}_{i\in I}$ una famiglia di funzioni continue.
+Se $f_i\vert_{U_i\cap U_j}=f_j\vert_{U_i\cap U_j}$ per ogni $i,j\in I$ allora esiste un'unica mappa continua $f\colon U\to Y$ tale che $f\vert_{U_i}=f_i$ per ogni $i\in I$.}
+{\proof Mostriamo che la funzione esiste, è unica ed ha la proprietà cercata.
+Imponiamo quest'ultima puntualmente definendo $f(x)=f_i(x)$ con un $i$ tale che $x\in U_i$.
+Un tale $i$ esiste grazie alle proprietà del ricoprimento, e se la scelta non è univoca è comunque irrilevante grazie alla compatibilità sulle intersezioni chiesta per ipotesi.
+Inoltre questa è l'unica definizione possibile che rispetti la proprietà di restrizione.
+
+Occupiamoci ora della continuità.
+Se $V$ è un aperto di $Y$ allora per definizione di continuità $f^{-1}_i(V)$ è un aperto di $U_i$.
+La preimmagine è anche un aperto di $U$, poiché è subset aperto di un subset aperto di $U$.
+Per la definizione di $f$ possiamo scrivere l'uguaglianza
+\[
+f^{-1}(V)=\bigcup_{i\in I}f^{-1}_i(V)
+\]
+ma siccome un'unione arbitraria di aperti è aperto concludiamo. \qed}
+\fou[inline]{S\`i; probabilmente $Y=\mathbb R$ per te, ma ovviamente i numeri reali non hanno un ruolo davvero particolare. }
+
+La proprietà cercata segue immediatamente.
+
+\pol[inline]{In effetti dalla seconda proprietà segue la prima.
+Basta pensare alle funzioni come definite univocamente dal pasting delle restrizioni agli aperti di un ricoprimento.
+Dunque nel caso del fascio delle funzioni continue tra aperti di uno spazio topologico la seconda proprietà garantisce la prima.
+Curioso!
+Naturalmente questo sarà falso in generale.}
+
+\pol[inline]{No, aspetta.
+Supponiamo che la seconda condizione di fascio valga. Allora la famiglia $\{f\vert_{U_i}\colon U_i\to \mathbb R\}_{i\in I}$ delle restrizioni di $f\colon U\to \mathbb R$ agli aperti del ricoprimento $\{U_i\}_{i\in I}$ determina $f$ univocamente. Dunque se un'altra funzione $g$ ha la medesima restrizione, aperto per aperto, ho $g=f$. Ovvero, la prima condizione.
+Mi sta sfuggendo qualcosa?}
+
+\pol[inline]{Risolto. La prima implica l'unicità della seconda. E infatti è più corretto scrivere la seconda senza unicità! (Warning: la consegna è stata corretta.)}

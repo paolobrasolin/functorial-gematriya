@@ -1,0 +1,171 @@
+\begin{MyExercise}
+\begin{itemize}
+\item Mostrare che $F\colon \cate{Op}(X)\to \Sets$ \`e un fascio su $X$ se e solo se per ogni $U\in\cate{Op}(X)$ e ogni ricoprimento aperto $\{U_i\}$ di $U$, nel seguente diagramma
+\[
+\xymatrix{
+& FU_i \ar[r] & F(U_i\cap U_j) \\
+FU \ar[r]^\epsilon \ar[dr]\ar[ur]& \prod_i F U_i\ar[u]\ar[d] \ar@<+4pt>[r]^(.4)v \ar@<-4pt>[r]_(.4)w & \prod_{i,j} F(U_i\cap U_j)\ar[u]\ar[d] \\
+& FU_j \ar[r]& F(U_i\cap U_j) 
+}
+\]
+$(F(U), \epsilon)$ \`e l'equalizzatore della coppia di frecce parallele $$v,w\colon \prod F U_i\to \prod_{i,j} F(U_i\cap U_j)$$
+indotte dalla propriet\`a universale del prodotto.
+\item Mostrare che $F(\varnothing)\cong \{*\}$ (il singoletto);
+\item Ogni prefascio su uno spazio con la topologia banale \`e un fascio. Ogni prefascio su uno spazio discreto \`e un fascio; pi\`u precisamente,
+\[
+\cate{Sh}(X) = \Sets_{/X}
+\]
+\end{itemize}
+\end{MyExercise}
+
+
+
+
+\subsubsection*{Parte uno}
+
+Denoto le intersezioni degli aperti del ricoprimento come $U_{ij}=U_i\cap U_j$ e le immagini delle inclusioni e la loro azione come $\rho_{WV}=F(V\subseteq W)\colon f\to f\vert_{V}$.
+\[
+\xymatrix{
+& FU_k \ar[r]_{\rho_{U_kU_{kl}}} & F(U_{kl}) \\
+FU \ar[r]^\epsilon \ar[ur]^{\rho_{UU_k}} \ar[dr]_{\rho_{UU_l}} & \prod_i F U_i\ar[u]_{\pi_k} \ar[d]^{\pi_l} \ar@<+4pt>[r]^(.4)v \ar@<-4pt>[r]_(.4)w & \prod_{i,j} F(U_{ij})\ar[u]^{\pi_{kl}} \ar[d]_{\pi_{kl}} \\
+& FU_l \ar[r]^{\rho_{U_lU_{kl}}} & F(U_{kl}) 
+}
+\]
+
+Seguendo il quadrato superiore in senso orario e quello inferiore in senso inverso abbiamo rispettivamente
+\[\begin{aligned}
+(f_i)_{i\in I} \mapsto f_k \mapsto f_k\vert_{U_{kl}} \\
+(f_i)_{i\in I} \mapsto f_l \mapsto f_l\vert_{U_{kl}}
+\end{aligned}\]
+L'unico modo di farli commutare per ogni $k$ ed $l$ è dunque
+\[\begin{aligned}
+v\colon(f_i)_{i\in I} \mapsto (f_i\vert_{U_{ij}})_{i,j\in I} \\
+w\colon(f_i)_{i\in I} \mapsto (f_j\vert_{U_{ij}})_{i,j\in I}
+\end{aligned}\]
+Il loro equalizzatore è il seguente set munito dell'ovvia inclusione:
+\[
+i\colon
+\mathrm{Eq}(v,w)
+=
+\left\{
+(f_i)_{i\in I} \in \prod_i F U_i
+\colon
+(f_i\vert_{U_{ij}})_{i,j\in I} = (f_j\vert_{U_{ij}})_{i,j\in I}
+\right\}
+\to
+\prod_i F U_i
+\]
+Dalla commutatività dei triangoli per ogni $k$ ed $l$ otteniamo
+\[
+\epsilon\colon f \mapsto (f\vert_{U_i})_{i\in I}
+\]
+
+Consideriamo il seguente diagramma:
+\[\xymatrix{
+FU \ar@{>->}[r]^\epsilon \ar@{.>>}[d]_\eta & \prod_i F U_i \\
+\mathrm{Eq}(v,w) \ar[ur]_i
+}\]
+La prima condizione di fascio equivale a chiedere che per ogni ricoprimento di ogni aperto $\epsilon$ sia mono. La seconda condizione di fascio equivale a chiedere che per ogni ricoprimento di ogni aperto esista un epi $\eta$ che faccia commutare il triangolo.
+
+Supponiamo che $(FU,\epsilon)$ sia isomorfo all'equalizzatore.
+Allora il triangolo commuta per un'unico isomorfismo $\eta$.
+Esso è anche epi.
+$\epsilon=i\eta$ è mono poiché lo è $i$ essendo un equalizzatore.
+
+Supponiamo che valgano le condizioni di fascio.
+Allora $i\eta=\epsilon$.
+Ma $i=\epsilon\eta^{-1}$ quindi esso è mono.
+E siccome $\eta=i^{-1}\epsilon$ esso è iso: $(FU,\epsilon)$ è isomorfo all'equalizzatore.
+
+\pol[inline]{Nella seconda parte non avevo realmente bisogno di usare il fatto che $\eta$ fosse epi per dire che $i$ è mono.
+Qualsiasi equalizzatore lo è.
+Credo che l'apparente ridondanza sia dovuta al fatto che l'ho già costruito esplicitamente, quindi non ho bisogno di provarne l'esistenza.}
+
+
+
+
+\subsubsection*{Parte due}
+
+Gli unici ricoprimenti del vuoto sono formati da copie del vuoto.
+Dunque per trovare $S=F(\varnothing)$ basta prendere un triangolo del diagramma della consegna e risolverlo in $\Sets$:
+\[\xymatrix{
+S \ar@{>->}[r]^\epsilon \ar@{=}[dr] & \prod_i S \ar@{->>}[d]^\pi \\
+& S
+}\]
+Essendo $\pi$ una proiezione, $\epsilon$ deve mandare $S$ per intero nel relativo fattore affinché il triangolo commuti.
+D'altro canto ciò deve valere per ogni proiezione.
+Quindi dev'esserci un solo fattore: $\prod_i S\cong S$.
+Concludiamo che $F(\varnothing)\cong \{*\}$, l'unico set che soddisfa la richiesta.
+
+
+
+
+\subsubsection*{Parte tre}
+
+Sia $S$ un set.
+Se $I$ e $D$ sono i funtori che muniscono i set di topologia rispettivamente indiscreta e discreta, è immediato che
+\[
+\cate{Op}(IS)\cong\{\varnothing \to S\}
+\qquad
+\cate{Op}(DS)\cong\mathcal P(S)
+\]
+
+{\oss Gli equalizzatori prodotti dai ricoprimenti sono insensibili alla presenza di aperti uguali tra loro nella collezione. Infatti la condizione di compatibilità obbliga le due relative componenti ad essere identiche. Identificherò ricoprimenti equivalenti in questo senso. Una conseguenza immediata è che l'unico ricoprimento del vuoto è formato dal solo vuoto.}
+
+{\oss Il ricoprimento di un aperto formato dal solo aperto banalizza le condizioni di fascio}
+
+Un prefascio $F$ su $\cate{Op}(IS)$ è un fascio.
+Gli unici due aperti sono $\varnothing$ ed $S$.
+L'unico ricoprimento da controllare è $\{\varnothing,S\}$ per $S$, ma si vede subito che esiste l'isomorfismo
+\[
+FS
+\cong
+\left\{
+(f_\varnothing,f_S) \in F\varnothing\prod FS
+\colon
+f_\varnothing = f_S\vert_\varnothing
+\right\}
+\]
+In pratica tutti gli incollamenti sono possibili ma sono banali a causa dell'estrema rigidità dei pezzi che hanno dimensione massima oppure nulla.
+Abbiamo visto che $F(\varnothing)$ è l'oggetto terminale di $\Sets$ e quindi anche l'immagine dell'unica inclusione è fissata.
+Il dato del fascio ammonta al solo set $FS$ ed una trasformazione naturale verso $G$ si riduce ad un'unica funzione $FS\to GS$ che fa commutare un triangolo banale.
+Concludiamo che
+\[ \cate{PSh}(IS) \cong \cate{Sh}(IS) \cong \Sets_{/\star} \cong \Sets \]
+
+\sout{Un prefascio $F$ su $\cate{Op}(DS)$ è un fascio.}
+\pol[inline]{
+O no?
+
+Consideriamo $S=\{x,z\}$. Prendiamo un prefascio definito così, per un set $A$:
+\[
+F\colon
+\vcenter{\xymatrix{
+\varnothing \ar[d] \ar[dr] \ar[r] & \{x\} \ar[d] \\
+\{y\} \ar[r] & \{x,y\}
+}}
+\mapsto
+\vcenter{\xymatrix{
+\star & A \ar[l] \\
+A \ar[u] & A\times A\times A \ar[u] \ar[ul] \ar[l]
+}}
+\]
+Lo dimostrerò tra un attimo, ma se $F$ fosse un prefascio dovrebbe valere $F\{x,y\}\cong F\{x\}\times F\{x\}$, condizione falsa appena $A$ è più grande di un singoletto.
+}
+
+Quando un prefascio $F$ su $\cate{Op}(DS)$ è un fascio?
+Qualsiasi fascio rispetta $F\varnothing=\star$, quindi assumiamo che sia vero.
+La conseguenza immediata è che tutte le restrizioni al vuoto coincidono.
+Qualsiasi aperto è ricoperto dalla collezione dei singoletti dei suoi punti, dunque deve valere (la condizione di compatibilità è trivializzata dal fatto che tutte le restrizioni al vuoto sono identiche)
+\[
+FU
+\cong
+\left\{
+(f_u)_{u\in U} \in \prod_{u\in U} F \{u\}
+\right\}
+\cong \prod_{u\in U} F \{u\}
+\]
+Insomma, il fascio è completamente determinato dalle immagini dei singoletti.
+Ma allora possiamo concludere che
+\[ \cate{PSh}(DS) \ncong \cate{Sh}(DS) \cong [\underline{S},\Sets] \cong \Sets_{/S} \]
+
+\pol[inline]{Credo che avessi inteso dire questo, nella consegna.}

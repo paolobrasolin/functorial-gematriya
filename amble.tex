@@ -1,0 +1,137 @@
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\usepackage{amsmath,amssymb,
+			wrapfig,amsthm, enumitem, 
+			graphicx,url , stmaryrd, 
+			todonotes,pifont,pigpen,marginnote}
+\usepackage{mparhack}
+\usepackage{makeidx}
+\makeindex
+
+\setlist{noitemsep}
+\usepackage{tikz}
+
+\usepackage[german,all,light,portrait]{draftcopy}
+\def\K{\mathcal{K}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\M}{\mathcal{M}}
+\usepackage[left=4cm, right=4cm]{geometry}
+
+\newcommand{\po}{\ar@{}[dr]|(.7){\text{\pigpenfont R}}}
+\newcommand{\pb}{\ar@{}[dr]|(.3){\text{\pigpenfont J}}}
+\newcommand{\pp}{\ar@{}[dr]|{\text{\pigpenfont N}}}
+%\usepackage{newtxtext,newtxmath}
+\usepackage{lmodern}
+%\usepackage{bbold}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\newcommand{\lort}{{}^\boxslash}
+\newcommand{\rort}{^\boxslash}
+%\renewcommand{\mathfrak}[1]{\text{\frakfamily #1}}
+
+\newtheoremstyle{reference}%
+   {}                %
+   {}                %
+   {}              %    Font del testo
+   {}                      %    Rientro margini
+   {\scshape}              %    Font del titolo dell'ambiente
+   {.}                     %    Punteggiatura dopo "Teorema"\"Definizione"
+   {.4em}                  %    Spazio tra titolo e testo.
+   {\thmname{#1}           %    #1 : Definizione\Teorema\ecc
+    \thmnumber{#2}         %    #2 : Contatore
+    \thmnote{{\sc [#3]}}}  %    #3 : Testo tra "[" e "]"
+
+
+\theoremstyle{definition}
+	\newtheorem{df}{Definizione}[section]
+	\newtheorem{thm}{Teorema}[section]
+	\newtheorem{lem}{Lemma}[section]
+	\newtheorem*{axio}{Assioma}
+	\newtheorem{es}{Esempio}
+	\newtheorem{prop}{Proposizione}[section]
+	\newtheorem*{cor}{Corollario}
+	\newtheorem{oss}{Osservazione}[section]
+	\newtheorem{ex}{Esercizio}[section]
+	\newtheorem{notat}{Notazione}[section]
+
+%=====================================
+%\let\amalg=\undefined
+%\let\coprod=\undefined
+%\DeclareSymbolFont{cmsymbols}{OMS}{cmsy}{m}{n}
+%\DeclareSymbolFont{cmlargesymbols}{OMX}{cmex}{m}{n}
+%\DeclareMathSymbol{\amalg}{\mathbin}{cmsymbols}{"71}
+%\DeclareMathSymbol{\coprod}{\mathop}{cmsymbols}{"60}
+%=================================================
+
+\renewcommand{\mathbf}[1]{\text{\fontseries{b}\selectfont{#1}}}
+\renewcommand{\textbf}[1]{\text{\fontseries{b}\selectfont{#1}}}
+\def\C{\mathbf C}
+\def\D{\mathbf D}
+
+\newcommand{\coker}{\text{coker}}
+
+\newcommand{\xto}[1]{\xrightarrow{#1}}
+\newcommand{\xot}[1]{\xleftarrow{#1}}
+
+\usepackage[all,cmtip]{xy}
+\usepackage[polutonikogreek, italian]{babel}
+\hyphenation{ag-giun-zio-ne o-mo-to-pi-che}
+\usepackage{xcolor}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+	\newcommand{\com}[1]{\mathpzc{#1}}
+\newcommand{\cate}[1]{\mathbf{#1}} 
+
+
+\def\Sets{\cate{Sets}}
+\def\Cat{\cate{Cat}}
+\def\hocolim{\underrightarrow{{\rm holim}}}
+\def\holim{\underleftarrow{{\rm holim}}}
+\def\vcat{\com V\text{-}\cate{Cat}}
+
+\usepackage{hyperref}
+\hypersetup{backref,
+	colorlinks=true,
+	linkcolor=NavyBlue,citecolor=NavyBlue}
+\usepackage{datetime}
+
+\newcommand{\spc}{\textbf{Spc}}
+\newcommand{\Top}{\textbf{Top}}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\tikzstyle{titlered} =
+    [draw=blue, thick, fill=blue,% 
+        text=white, rectangle,  
+        right, minimum height=.7cm]
+
+\newcounter{exercise}
+
+\renewcommand*\theexercise{Exercise~\arabic{exercise}}
+
+\makeatletter
+\mdfdefinestyle{exercisestyle}{%
+    outerlinewidth=1em,%
+    outerlinecolor=white,%
+    leftmargin=-1em,%
+    rightmargin=-1em,%
+    middlelinewidth=1.2pt,%
+    roundcorner=5pt,%
+    linecolor=blue,%
+    backgroundcolor=blue!20,
+    innertopmargin=1.2\baselineskip,
+    skipabove={\dimexpr0.5\baselineskip+\topskip\relax},
+    skipbelow={-1em},
+    needspace=0.5\textheight,%3\baselineskip,
+    frametitlefont=\sffamily\bfseries,
+    settings={\global\stepcounter{exercise}},
+    singleextra={%
+        \node[titlered,xshift=1cm] at (P-|O) %
+            {~\mdf@frametitlefont{\theexercise}~};},%
+    firstextra={%
+            \node[titlered,xshift=1cm] at (P-|O) %
+                    {~\mdf@frametitlefont{\theexercise}~};},
+}
+\makeatother
+
+\newenvironment{MyExercise}%
+{\begin{mdframed}[style=exercisestyle,nobreak]}{\end{mdframed}}

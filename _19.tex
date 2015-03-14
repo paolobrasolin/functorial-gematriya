@@ -1,0 +1,192 @@
+\begin{MyExercise}
+Mostrare che le seguenti corrispondenze sono fasci su uno spazio topologico $X\supseteq U$:
+\begin{itemize}
+\item $U\mapsto \mathcal C^k(U)$ per $k\in [0,\infty]\cup\{\omega\}$ se $X$ \`e una variet\`a differenziabile di classe $\mathcal C^k$;
+\item $U\mapsto H(U) =$ funzioni olomorfe su $U$, se $X$ \`e una variet\`a complessa;
+\item $U\mapsto \Omega^p(U) = \{p\text{-forme differenziali su } U\}$ se $X$ \`e una variet\`a differenziabile di dimensione finita, e $p\in\{0,\dots, \dim X\}$;
+\item $U\mapsto \mathfrak{Der}(U)$, le \emph{derivazioni} su $U$, ovvero le mappe $\mathcal C^\infty(U)\to \mathcal C^\infty(U)$ che sono lineari e Leibniz.
+\end{itemize}
+Mostrare che le seguenti corrispondenze non sono fasci su $X$:
+\begin{itemize}
+\item $U\mapsto \{f\colon U\to\mathbb R\mid |f(x)| < M_f\; \forall x\in U\}$ se $X=\mathbb R^n$, $n\ge 1$;
+\item $U\mapsto \faktor{H(U)}{\text{im }\frac{\partial}{\partial z}}$ se $X = \mathbb C\setminus \{0\}$.
+\end{itemize}
+\end{MyExercise}
+
+
+
+
+\subsubsection*{Funzioni differenziabili su varietà differenziabili}
+
+Una varietà si presenta come uno spazio topologico secondo numerabile ed Hausdorff munito di un atlante.
+Un atlante è un ricoprimento i cui aperti siano muniti ognuno di un omeomorfismo (carta) verso $\mathbb R^n$, per qualche $n$ che si dice dimensione della varietà.
+
+Gli atlanti catturano l'idea di essere {\it localmente omeomorfi ad $\mathbb R^n$}.
+L'hausdorfficità non è misteriosa.
+Secondo numerabile vuol dire che la topologia deve avere una base numerabile.
+È una richiesta molto forte, ma non ne ho mai colto la necessità.
+\pol[inline]{Vorrò una giustificazione fascio-teoretica delle proprietà topologiche richieste, se esiste.}
+
+Questa è una definizione piuttosto grezza di varietà topologica. Arricchendola di una nozione di differenziabilità si ottengono le varietà differenziabili. Porchettiamo per capire come dovrebbero essere fatte usando l'unica cosa che abbiamo: la differenziabilità negli spazi euclidei. La ragionevolezza suggerisce un'unica definizione.
+
+Siano $X$ ed $Y$ due varietà topologiche di dimensioni $m$ ed $n$.
+Siano $U\subseteq X$ e $V\subseteq Y$ due loro aperti.
+Diremo che una funzione $f\colon U\to V$ è di classe $\mathcal C^k$ in $p\in U$, i.e.
+\[ f\in\mathcal C^k_p(U,V) \]
+se scelte comunque due carte $\alpha\colon A\to\mathbb R^m$ in $X$ e $\beta\colon B\to\mathbb R^n$ in $Y$, tali che $p\in A$ ed $f(p)\in B$, vale
+\[ \beta\circ f\circ\alpha^{-1}\in\mathcal C^k_{\alpha(p)}(\alpha(A\cap U),\beta(B\cap V)) \]
+Diremo che $f$ è di classe $\mathcal C^k$ se lo è in ogni punto.
+Ovvero $f\in\mathcal C^k(U,V)$ se $\beta\circ f\circ\alpha^{-1}\in\mathcal C^k(\alpha(A\cap U),\beta(B\cap V))$ per ogni coppia di carte.
+
+Non avevo mai visto definire le cose in questo ordine prima.
+Trovo che chiarifichi l'usuale definizione di varietà differenziabile di classe $\mathcal C^k$.
+Infatti essa ammonta a chiedere che l'identità sia $\mathcal C^k$.
+Ancora meno misterioso della richiesta di differenziabilità sulle mappe di transizione, a mio parere.
+\pol[inline]{Perché non me l'aveva detto nessuno? In questo modo la definizione actually makes sense!}
+
+Dalla definizioni date è immediato che la composizione di due funzioni, una $\mathcal C^p$ ed una $\mathcal C^q$, è almeno di classe $\mathcal C^{\min(p,q)}$.
+
+Da ora lavoriamo in un un'unica varietà differenziabile $X$ di classe $\mathcal C^k$.
+Denotiamo con $i_{U,V}$ l'unico morfismo di $\cate{Op}(X)(U,V)$, ovvero la mappa di inclusione.
+Allora $\mathcal C^k(i_{U,V})\colon \mathcal C^k(V)\to \mathcal C^k(U)$ è la precomposizione con essa.
+
+In una varietà $\mathcal C^k$ le inclusioni sono $\mathcal C^k$ (si tratta di restrizioni dell'unità, ovvero delle mappe di transizione). La precomposizione preserva la classe di differenziabilità e quindi anche l'operazione di restrizione la preserva: $\mathcal C^k$ allora è proprio un funtore ed utilizzeremo l'usuale notazione per le restrizioni.
+
+La condizione di fascio è la seguente. Per ogni aperto $U\subseteq X$ ed ogni famiglia di funzioni $f_i\in\mathcal C^k(U_i)$ con $i\in I$ tale che i domini siano un ricoprimento aperto di $U$,
+\[
+(\forall i,j\in I) \left(f_i\vert_{U_i\cap U_j}=f_j\vert_{U_i\cap U_j}\right) \Rightarrow (\exists! f\in C^k(U)\colon (\forall i\in I)(f\vert_{U_i}=f_i))
+\]
+L'esistenza è immediata definendo $f$ puntualmente identica alle $f_i$, evitando ambiguità grazie alla condizione di compatibilità.
+L'unicità deriva dal fatto che è l'unica definizione possibile che realizza la condizione richiesta ad $f$.
+Inoltre, la classe di differenziabilità è una proprietà che abbiamo definito puntualmente quindi $f$ la eredita dalle $f_i$ per costruzione.
+
+\pol[inline]{In effetti bastava usare la definizione locale di continuità nell'esercizio precedente per abbreviarlo.}
+
+
+
+
+\subsubsection*{Funzioni olomorfe su varietà complesse}
+
+Procediamo per analogia col caso precedente.
+Costruiamo un prototipo di varietà complessa di dimensione $n$ come uno spazio topologico secondo numerabile ed Hausdorff, localmente omeomorfo al cerchio unitario aperto di $\mathbb D^n\subset\mathbb C^n$.
+
+È naturale tentare di definire la nozione di funzione olomorfa tra oggetti di questo tipo.
+Prendiamo $X$ ed $Y$ di dimensioni $m$ ed $n$ e due aperti $U\subseteq X$ e $V\subseteq Y$.
+Diremo che una funzione $f\colon U\to V$ è olomorfa in $p\in U$, i.e.
+\[ f\in H_p(U,V) \]
+se scelte comunque due carte $\alpha\colon A\to\mathbb D^m$ in $X$ e $\beta\colon B\to\mathbb D^n$ in $Y$, tali che $p\in A$ ed $f(p)\in B$, vale
+\[ \beta\circ f\circ\alpha^{-1}\in H_{\alpha(p)}(\alpha(A\cap U),\beta(B\cap V)) \]
+Diremo che $f$ è olomorfa se lo è in ogni punto.
+Ovvero $f\in H(U,V)$ se $\beta\circ f\circ\alpha^{-1}\in H(\alpha(A\cap U),\beta(B\cap V))$ per ogni coppia di carte.
+
+Ricordiamo che una funzione $h\colon Y\subseteq\mathbb C^m\to Z\subseteq\mathbb C^n$ è olomorfa in un punto se in esso si annulla la derivata di Wirtinger di ogni sua componente. Sarà olomorfa se tale condizione vale sull'intero dominio.
+
+Definiamo dunque una varietà complessa come un oggetto di questo genere tale che l'identità sia olomorfa.
+\pol[inline]{No, davvero. Qui sta succedendo {\it qualcosa}.}
+
+Riguardo alle condizioni di fascio?
+La regola della catena garantisce che la composizione preservi l'olomorficità.
+Il resto delle verifiche sono una riscrittura dell'esercizio precedente poiché abbiamo definito tutte le proprietà localmente.
+
+\pol[inline]{Holy sh--- io induco una proprietà definita localmente ed allora se ce l'ha l'identità ce l'hanno tutte le mappe tra aperti!}
+
+\hrulefill
+
+Un \emph{incubo} su $X$ consta di un oggetto di $\Top_{/X}$; i morfismi $(E, h)\to (E', h')$ di $\Top_{/X}$ sono dati da triangoli commutativi
+\[
+\xymatrix{
+E \ar[dr]_h\ar[rr]^f && E'\ar[dl]^{h'}\\
+& X
+}
+\]
+Una \emph{sezione} di un incubo $(E,h\colon E\to X)$ su $X$ consiste di un elemento generalizzato di $(E, h)$, ovvero di un morfismo $(X, 1_X)\to (E, h)$.
+\begin{MyExercise}
+Mostrare che per ogni inclusione di un aperto $i\colon U\subseteq X$, la corrispondenza
+\[
+U\mapsto 
+\left\{
+\left. 
+\begin{tikzcd}
+U \arrow[d, "s"] \\
+E
+\end{tikzcd}
+\right|
+\begin{tikzcd}
+U \arrow[rr, "s"] \arrow[dr, "i", hook]&& E \arrow[dl, "h"] \\
+& X &
+\end{tikzcd}
+\right\}
+\]
+dove $i\colon U\subseteq X$, definisce un fascio su $X$.
+\end{MyExercise}
+
+Andiamo in $\cate{Top}$. Prendiamo un fibrato $p:E\to B$.
+Possiamo restringerlo ad un aperto $U\subseteq B$ con un pullback lungo l'inclusione:
+\[\xymatrix{
+p^\leftarrow(U) \ar[d]_{i^\star_{UB}p} \ar[r] & E \ar[d]^p \\
+U \ar[r]_{i_{UB}} & B
+}\]
+
+Consideriamo il funtore $S_p:\cate{Op}(B)\to \Sets$ che manda $U$ nella collezione delle sezioni di $i^\star_{UB}p$. Esso manda un'inclusione $i$ nella funzione agente come la precomposizione $s\mapsto s\circ i$ sulle sezioni. Le verifiche di funtorialità sono immediate.
+
+$S_p$ è il fascio delle sezioni locali del fibrato $p$.
+Ma è davvero un fascio?
+Vogliamo che per ogni aperto $U$ di $B$ ed ogni famiglia di sezioni $s_i\in S_p(U_i)$ indiciata da $i\in I$ i cui domini formino un ricoprimento aperto di $U$ valga
+\[
+(\forall i,j\in I)(f_i\circ i_{U_{ij},U_i}=f_j\circ i_{U_{ij},U_j})
+\Rightarrow
+(\exists! f\in S_p(U))(\forall i\in I)(f\circ i_{U,U_i}=f_i)
+\]
+dove denotiamo $U_{ij}=U_i\cap U_j$.
+Esistenza, unicità e continuità di $f$ si mostrano esattamente come già fatto in precedenza.
+Basta solo verificare che $f\in S_p(U)$, ovvero $i^\star_{UB}p\circ f=\mathrm{id}_U$, ma ciò è vero puntualmente per definizione.
+
+
+
+\subsubsection*{Forme differenziali su varietà differenziabili}
+
+Data una varietà $X$ consideriamo il fibrato $\Lambda^p(T^\star X)\to X$ (cioè dalla $p$-esima potenza esterna del fibrato cotangente).
+Il funtore $\Omega^p$ è esattamente il {\it fascio} delle sue sezioni locali.
+
+\pol[inline]{Was that too cheap?}
+
+
+
+
+\subsubsection*{Derivazioni}
+
+\pol[inline]{Mi sto incaloppiando su come restringere le derivazioni - non sul senso, ma su come scriverlo bene. Ci devo pensare un attimo.}
+
+
+
+
+\subsubsection*{Prefascio delle funzioni localmente limitate}
+
+%\pol[inline]{Credo ci sia una svista nella consegna. Un $X$ al posto di un $U$.}
+
+Consideriamo le funzioni $f_i=\pi_1\vert_{B_i}$ dove intendiamo che $B_i$ sia la palla aperta di centro $(i,0,\ldots)$ e raggio unitario, per $i\in\mathbb N$.
+Esse sono tutte limitate ed il loro incollamento esiste unico ma non è limitato, quindi non abbiamo un fascio.
+
+Moralmente quello che succede è che sto rendendo troppo rigidi i pezzi per gli incollamenti. Difatti l'ostruzione è che l'incollamento non esiste. Cioè, viene meno la seconda condizione di fascio.
+
+
+\subsubsection*{Prefascio delle funzioni olomorfe sminquiate}
+
+Consideriamo per $X = \mathbb C\setminus \{0\}$ il seguente prefascio:
+\[U\overset{F}\mapsto \faktor{H(U)}{\textstyle \text{im }\frac{\partial}{\partial z}}\]
+
+L'olomorficità equivale a richiedere l'esistenza di antiderivate locali.
+Il set a denominatore del quoziente contiene esattamete le funzioni che hanno antiderivata globale.
+Quindi, questo prefascio assegna ad $U$ le funzioni complesse che hanno antiderivata locale ma non globale.
+
+Moralmente quello che succede è che sto rendendo troppo flessibili i pezzi per gli incollamenti. Infatti mi aspetto che venga meno la prima condizione di fascio, cioè l'unicità dell'incollamento.
+
+Il modo più rapido è mostrare due funzioni differenti con restrizioni agli aperti di un ricoprimento del dominio identiche.
+
+\pol[inline]{Hnnng. Non mi viene, ora.}
+
+\fou[inline]{La topologia (più precisamente il gruppo fondamentale, o il primo gruppo di (co)omologia) di $U$ dice quali forme differenziali hanno soluzione o no, sia in ambito reale che in ambito complesso; in questo caso è utile osservare che la condizione di separazione si enuncia così:
+\begin{quote}
+Per ogni $U\in\cate{Op}(X)$, e ogni ricoprimento aperto $\{U_i\}$ di $U$, se $s\in F(U)$ è zero su ogni $U_i$, $s|_{U_i}=0$, allora $s=0$
+\end{quote}
+(è immediato: $s|_{U_i}=t|_{U_i} \iff (s-t)|_{U_i}=0$). Questo ti sta dicendo che la domanda si rifrasa come: per il prefascio dato, è vero che per ogni $U$, e ogni ricoprimento di tale $U$, quando $s|_{U_i}=0$ allora $s=0$? La risposta è no: prendi $U=\mathring{D}(0,1[$ (il disco bucato di centro l'origine) e come $s\in FU$ prendi la funzione $\frac{1}{z}$; allora, su ogni ricoprimento di tale $U$ la funzione è la derivata di qualcuno, e quindi diventa zero in quel conucleo: scegli un ramo di $\log z$. E però --dimostralo o ricordatelo da Metodi!-- globalmente $s\neq 0$, ovvero $\frac{1}{z}$ non è la derivata di nessuno.}

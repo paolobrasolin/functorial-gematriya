@@ -1,0 +1,175 @@
+\begin{MyExercise}
+Sia $\C$ una qualsiasi categoria piccola; mostrare che esiste una aggiunzione $\Delta\dashv \Gamma$, dove $\Delta\colon \Sets \to \Sets^{\C^\text{op}}$ \`e il funtore costante in $X\in\Sets$, $\Delta_X(C) \equiv X$ per ogni $C\in\C$ (hint: $\Delta = t^*\colon \Sets^{\{\bullet\}} \to \Sets^{\C^\text{op}}$ se $t\colon\C\to\{\bullet\}$ \`e il funtore terminale); descrivere l'azione di questo $\Gamma$ su oggetti e morfismi di $\Sets^{\C^\text{op}}$.
+\end{MyExercise}
+
+Un funtore $F\in[\C,\D]$ induce un funtore tra le categorie dei prefasci $F^\star\in[\textsf{PSh}(\D),\textsf{PSh}(\C)]$ dato dalla precomposizione con il funtore speculare $\tilde{F}\in[\C^{\bf op},\D^{\bf op}]$ definito come $\tilde{F}:=(-)^{\bf op} \circ F \circ (-)^{\bf op}$.
+\fou[inline]{S\`i, quello che stai dicendo \`e che esiste un(o pseudo)funtore $(-)^\star\colon \mathbf{Cat}\to \mathbf{Cat}$ che manda una categoria -fottiamocene delle taglie, o meglio, fissa due universi incapsulati- nella sua cat dei prefasci; come agisce sui morfismi di $\bf Cat$ tale pseudofuntore? Esattamente mandando $F$ nel tuo $F^\star$. Ora, in quanto pseudofuntore esso rispetta le coppie aggiunte: questo \`e quello che ti impegni a mostrare dopo, ovvero che se $F\dashv G$ in $\bf Cat$, allora $G^*\dashv F^*$. Tu ti metti a farlo sui soli rappresentabili, ma in realt\`a \`e vero pi\`u in generale in un modo pi\`u astratto: semplicemente dati $F\colon \bf C\to D$, con un aggiunto destro $G\colon \bf D\to C$ si ha che $\textsf{Lan}_F\cong G^\star$ (ricorda che $\textsf{Lan}_F\dashv F^\star$ \emph{per definizione} di $\textsf{Lan}_F$!):
+\begin{align*}
+\textsf{Lan}_F(H) &\cong \int^A \hom_\D(FA, -)\times HA \\
+(agg.) & \cong \int^A \hom_\D(A, G(-))\times HA\\
+(Yon)&\cong HG(-)
+\end{align*}
+dove il primo step usa $F\dashv G$ e il secondo Yoneda ninja.}
+
+Se $G\in[\D,\C]$, usando Yoneda e denotando con $\hat{X}$ ($\check{X}$) il (co)prefascio (co)rappresentato da $X$ otteniamo due cascate di oggetti isomorfi:
+\[
+\begin{array}{c}
+\D^{\bf op}( D, \tilde{F}C ) \\
+\D( FC, D ) \\
+\textsf{PSh}(\C)( \C(-,C), \D(-,D) \circ \tilde{F} ) \\
+\textsf{PSh}(\C)( \hat{C}, F^\star\hat{D} ) \\
+\textsf{CoPSh}(\C)( \tilde{F}^\star\check{D}, \check{C} )
+\end{array}
+\qquad
+\begin{array}{c}
+\C^{\bf op}( \tilde{G}D, C ) \\
+\C( C, GD ) \\
+\textsf{CoPSh}(\D)( \D^{\bf op}(D,-), \C^{\bf op}(C,-) \circ G ) \\
+\textsf{CoPSh}(\D)( \check{C}, \tilde{G}^\star\check{D} ) \\
+\textsf{PSh}(\D)( G^\star\hat{C}, \hat{D} )
+\end{array}
+\]
+dove gli isomorfismi inferiori sono conseguenza del fatto che la corappresentabilità equivale alla rappresentabilità nella categoria opposta.
+
+Unendo le colonne otteniamo quattro condizioni di aggiuntezza equivalenti:
+\[
+\begin{array}{c}
+\tilde{G} \dashv \tilde{F} \\
+F \dashv G \\
+G^\star \dashv F^\star \text{ sui rappresentabili}\\
+\tilde{F}^\star \dashv \tilde{G}^\star \text{ sui corappresentabili}\\
+\end{array}
+\]
+
+Bene. Ora facciamo l'esercizio.
+
+Sia $\bf C$ una categoria piccola e $t:\C\rightarrow\{\bullet\}$ l'unico funtore da essa verso l'Occhio di Sauron, la categoria terminale. I prefasci sull'Occhio sono funtori che selezionano ognuno dei set e la relativa identità. Precomporne uno con $\tilde{t}$ restituisce un prefascio che mappa l'intera $\C^{\bf op}$ nell'oggetto e nell'identità che il primo individuava. Dunque essenzialmente $t^\star=\Delta$. Ma allora se esiste un'aggiunzione $\Delta\dashv\Gamma$ esiste anche $s\dashv t$ ed almeno sui rappresentabili $\Gamma=s^\star$. 
+\fou[inline]{Come ti dicevo, il punto \`e:
+\begin{itemize}
+\item Non sempre $\bf C$ ha un iniziale: in tal caso $\Gamma$ esiste ma $s$ no; dunque
+\item Non ogni aggiunzione tra categorie di prefasci \`e indotta da un'aggiunzione nel senso superiore: questo in gergo si dice ``il 2-funtore $(-)^\star$ non \`e locally full'', perch\'e ogni funtore $F^\star$ ha $\textsf{Lan}_F$, e d'altra parte non \`e sempre vero che ogni $\textsf{Lan}_F$ \`e isomorfa a $G^*$ per qualche $G$ (controesempio? questo va benissimo: $\bf C$ sarebbe forzata ad avere un iniziale).
+\end{itemize}}
+Chi è, dunque, $s$? L'aggiunzione si riduce a
+\[
+\C(s\bullet,B)
+\cong
+\{\bullet\}(\bullet,tB)
+\cong
+\{\bullet\}(\bullet,\bullet)
+\cong
+\star
+\]
+ma ciò significa che $s\bullet$ dev'essere l'oggetto iniziale di \C, la cui esistenza è garantita dal fatto che $s$ sia aggiunto sinistro e $\bullet$ sia iniziale. Per funtorialità si completa la definizione di $s$: esso individua l'oggetto iniziale di \C e la sua identità. Come agisce $s^\star$? Precomporre $\tilde{s}$ ad un prefascio su \C dà un prefascio che individua l'immagine dell'oggetto iniziale tramite il primo. Questo dà un'aggiunzione, ma solo sui prefasci rappresentabili! Infatti è immediato che in generale
+\[\begin{array}{c}
+\textsf{PSh}(\C)( \Delta_P, Q )
+\cong
+\textsf{PSh}(\C)( t^\star P, Q )
+\ncong
+\textsf{PSh}(\{\bullet\})( P, s^\star Q )
+\cong
+\Sets( P, Qs\bullet )
+\end{array}\]
+
+\pol[inline]{Il conto pertanto non ha risolto l'esercizio ma era istruttivo ed ha fornito un buon controesempio, come dicevamo sopra. Ora ricominciamo daccapo.}
+
+
+Abbiamo bisogno della seguente
+{\prop L'estensione di Kan destra (sinistra) lungo il funtore verso la categoria terminale è l'operazione di (co)limite.}
+{\proof
+Srotoliamo le definizioni. Detto $t\colon\C\to\{\bullet\}$ definiamo la precomposizione $t^\star\colon[\{\bullet\},\D]\to[\C,\D]$. Le estensioni di Kan allora ammontano alle aggiunzioni
+\[\begin{array}{rcccl}
+&&		[\C,\D] (t^\star D,F)
+&\cong&	[\{\bullet\},\D] (D,{\textsf Ran}_tF)
+\\\null	[\{\bullet\},\D] ({\textsf Lan}_tF,D)
+&\cong&	[\C,\D] (F,t^\star D)
+\end{array}\]
+Se $D:\bullet\mapsto d$ allora $t^\star D=\Delta_d$, il funtore costante su $\C$ con immagine $d$. Quindi
+\[\begin{array}{rcccl}
+&&		[\C,\D] (\Delta_d,F)
+&\cong&	\D (d,{\textsf Ran}_tF\bullet)
+\\\null	\D ({\textsf Lan}_tF\bullet,d)
+&\cong&	[\C,\D] (F,\Delta_d)
+\end{array}\]
+ovvero l'estensione sinistra (destra) (co)rappresenta i (co)coconi.
+Dunque per definizione di (co)limite
+\[
+{\textsf Lan}_t(-)\bullet \cong {\rm colim}
+\qquad
+{\textsf Ran}_t(-)\bullet \cong {\rm lim}
+\]
+\qed}
+
+Per quanto detto, $\Gamma={\textsf Ran}_t(-)\bullet$ ed è ben definito poiché $\C^\text{op}$ è piccola e $\Sets$ è completa. $\Gamma$ manda funtori nel loro limite e trasformazioni naturali nella freccia tra i limiti di dominio e codominio univocamente determinata per naturalità.
+\fou[inline]{Bang! Molto bene. Adesso come esercizio bonus, usa il calcolo delle cofini per mostrare lo stesso risultato:
+\[
+\text{Lan}_tK\cong \int^C \hom_{\{\bullet\}}(tC,-)\times KC\qquad 
+\text{Ran}_tK\cong \int_C KC^{\hom(-, tC)}
+\]}
+
+\pol[inline]{Ok.}
+
+{\prop Se tutte le categorie coinvolte sono piccole ed il codominio dei funtori da estendere è (co)completo \pol{Basta meno, ma non mi sbilancio.} allora le estensioni di Kan esistono.}
+{\proof
+\[\begin{array}{rl}
+&[\cate{B},\D](F,L^\star G)
+\\\cong&
+[\cate{B},\D](F,GL)
+\\\cong&
+\int_{b:\cate{B}} \D(Fb,GLb)
+\\\cong&
+\int_{b:\cate{B}} [\D,\Sets](\D(Lb,-),\D(Fb,G-))
+\\\cong&
+\int_{b:\cate{B}}\int_{s:\Sets} \Sets(\D(Lb,s),\D(Fb,Gs))
+\\\cong&
+\int_{b:\cate{B}}\int_{s:\Sets} \D(\D(Lb,s)\times Fb,Gs)
+\\\cong&
+\int_{s:\Sets}\int_{b:\cate{B}} \D(\D(Lb,s)\times Fb,Gs)
+\\\cong&
+\int_{s:\Sets} \D(\int^{b:\cate{B}}\D(Lb,s)\times Fb,Gs)
+\\\cong&
+[{\mathbf E},\D](\int^{b:\cate{B}}\D(Lb,-)\times Fb,G)
+\end{array}
+\begin{array}{rl}
+[\C,\D](R^\star F,G)
+&\cong\\\null
+[\C,\D](FR,G)
+&\cong\\
+\int_{c:\C} \D(FRc,Gc)
+&\cong\\
+\int_{c:\C} [\D,\Sets](\D(-,Rc),\D(F-,Gc))
+&\cong\\
+\int_{c:\C}\int_{s:\Sets} \Sets(\D(s,Rc),\D(Fs,Gc))
+&\cong\\
+\int_{c:\C}\int_{s:\Sets} \D(Fs,Gc^{\D(s,Rc)})
+&\cong\\
+\int_{s:\Sets}\int_{c:\C} \D(Fs,Gc^{\D(s,Rc)})
+&\cong\\
+\int_{s:\Sets} \D(Fs,\int_{C:\C}Gc^{\D(s,Rc)})
+&\cong\\\null
+[{\mathbf F},\D](F,\int_{C:\C}Gc^{\D(-,Rc)})
+\end{array}\]
+e dunque
+\[
+\text{Lan}_LF\cong \int^{b:\cate{B}}\D(Lb,-)\times Fb
+\qquad 
+\text{Ran}_RG\cong \int_{C:\C}Gc^{\D(-,Rc)}
+\]
+\qed}
+
+{\oss Se $L\dashv R'$ ed $L'\dashv R$ allora
+\[\begin{array}{rcccl}
+\int^{b:\cate{B}}\D(Lb,-)\times Fb
+&\cong&
+\int^{b:\cate{B}}\D(b,R'-)\times Fb
+&\cong&
+FR'\\
+\int_{C:\C}Gc^{\D(-,Rc)}
+&\cong&
+\int_{C:\C}Gc^{\D(L'-,c)}
+&\cong&
+GL'
+\end{array}\]
+e pertanto
+\[L\dashv R \qquad\Leftrightarrow\qquad R^\star\dashv L^\star\]
+Ciò però si può mostrare anche chiedendo soltanto che le categorie siano tutte piccole.
+}

@@ -1,0 +1,27 @@
+Questo ultimo punto induce a definire una sottocategoria $\cate{\'Et}(X)$ degli omeomorfismi locali (spazi \emph{\'etale} su $X$).
+\begin{MyExercise}
+La corrispondenza $\Gamma\colon \cate{\'Et}(X)\to \cate{Sh}(X)$ definisce un funtore che ha un aggiunto sinistro $\Lambda\colon \cate{Sh}(X)\to \cate{\'Et}(X)$: dato $F$
+\begin{itemize}
+\item Costruiamo lo spazio $\Lambda F = \coprod_{x\in X} F_x$, unione disgiunta di tutte le spighe di $F$ (per ora \`e solo un insieme);
+\item Ogni $s\in F(U)$ induce una funzione $\hat s\colon U\to \Lambda F$ definita mandando $x\in U$ in $s_x\in F_x$\footnote{Ogni elemento di $FU$ ha una immagine canonica nel colimite $F_x = \varinjlim_{V\supseteq\{x\}} FV$; dato $s\in FU$, denotiamo tale immagine con $s_x$.};
+\item Definiamo su $\Lambda F$ una topologia: una base di aperti \`e fatta da
+\begin{align*}
+\mathfrak{B}(\Lambda F)_{s, U} &= \{\hat s(U)\mid s\in FU,\; U\in \cate{Op}(X) \}\\
+& = \{ s_x\mid x\in U,\; U\in \cate{Op}(X) \}
+\end{align*}
+Mostrare che \`e davvero una base; la topologia che genera \`e la pi\`u fine a rendere tutte le $\hat s$ funzioni continue.
+\item Per questa topologia, l'ovvia funzione $p\colon \Lambda F\to X$ la cui fibra sopra $x\in X$ \`e $F_x$ \`e un omeomorfismo locale.
+\item Mostrare che esiste un omeomorfismo 
+\[
+(E, q) \to (\Lambda \Gamma E, p)
+\]
+di incubi su $X$; questa \`e la \emph{counit\`a} della aggiunzione $\Lambda\dashv \Gamma$;
+\item Mostrare che esiste una trasformazione naturale $\eta\colon 1\Rightarrow \Gamma\Lambda$; mostrare che $F\in \cate{PSh}(X)$ \`e un fascio se e solo se ogni $\eta_F\colon F\to \Gamma \Lambda F$ \`e un isomorfismo.
+\item Mostrare che valgono le identit\`a triangolari per $(\epsilon,\eta)$, ovvero che le composizioni
+\begin{gather*}
+\Gamma \xto{\eta * \Gamma} \Gamma\Lambda\Gamma \xto{\Gamma * \epsilon}\Gamma \\
+\Lambda \xto{\Lambda * \eta} \Lambda\Gamma\Lambda \xto{\epsilon * \Lambda} \Lambda
+\end{gather*}
+sono le identit\`a dei rispettivi funtori.
+\end{itemize}
+\end{MyExercise}

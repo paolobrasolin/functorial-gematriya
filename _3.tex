@@ -1,0 +1,22 @@
+\begin{MyExercise}
+La categoria $\Delta$ che ha per oggetti gli insiemi totalmente ordinati e finiti non \`e cartesiana (come dovrebbe essere fatto il prodotto?)
+\end{MyExercise}
+La categoria $\bf \Delta$ non è cartesiana. Infatti, dalla monotonicità delle proiezioni
+\[(a,b)\leq(a',b') \Rightarrow a\leq a' \wedge b \leq b'\]
+e dalla totalità dell'ordine del prodotto
+\[(a,b)\leq(a',b')\vee(a',b')\leq(a,b)\]
+seguirebbe
+\[
+a\leq a' \wedge b \leq b'
+\bigvee
+a'\leq a \wedge b' \leq b
+\]
+ovvero
+\[
+a\leq a' \vee b' \leq b
+\bigwedge
+a'\leq a \vee b \leq b'
+\]
+che non è sempre vero.
+\fou[inline]{Dunque; ti dico come l'ho fatto io. Dentro $\boldsymbol \Delta$ stanno gli insiemi \emph{totalmente} ordinati con funzioni monotone annesse. Il prodotto cartesiano \`e totalmente ordinato dall'ordine lessicografico, quello sulle componenti non ordina totalmente $[1]\times [1]$ ($(1,0)$ e $(0,1)$ non sono confrontabili!), e per\`o rispetto all'ordine lessicografico le proiezioni canoniche non sono monotone --avrebbero bisogno di quello sulle componenti-- Insomma, \`e il lemma della coperta troppo corta.}
+\pol[inline]{Sì, stiamo dicendo esattamente la stessa cosa. Infatti $(1,0)$ e $(0,1)$ sono proprio due elementi che rendono falsa la condizione che ho scritto - ovvero, sui quali supporre che valgano congiuntamente totalità e monotonia delle proiezioni porta ad un assurdo. Infatti la cosa che ho scritto vuol dire che non è possibile ordinare elementi del prodotto le cui componenti non siano ordinate concordemente tra loro.}

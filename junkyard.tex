@@ -1,0 +1,109 @@
+\subsubsection*{Slice ed aggiunzioni}
+
+Sia $\C$ una categoria con tutti i pullback.
+Una sua freccia $f\colon X\to Y$ induce un funtore pullback $f^\star\colon \C/Y\to\C/X$. Diciamo che sugli oggetti agisce come il pullback lungo $f$ e consideriamo il diagramma seguente per capire come agisce su una freccia $\C/Y$:
+\[\xymatrix{
+= \ar[d] \ar@{.>}[r] \ar@(ur,ul)[rr]_{f^\star g}
+	& - \ar[d] \ar[r]_{f^\star h}
+	& X \ar[d]^f \\
+A \ar[r]^m \ar@(dr,dl)[rr]^{g}
+	& B \ar[r]^h
+	& Y
+}\]
+Il quadrato destro e quello bombato sono pullback. Allora per la commutatività del triangolo inferiore e la proprietà {\it due su tre} sappiamo che il quadrato sinistro è un pullback ed il triangolo superiore commuta. In simboli:
+\[ f^\star g = f^\star (hm) = f^\star h \circ (h^\star f)^\star m \]
+Ora sappiamo anche come deve agire il funtore sui morfismi:
+\[ f^\star(m\colon g\to h)=((h^\star f)^\star m\colon f^\star g\to f^\star h) \]
+
+Consideriamo ora un funtore $L\colon \C\to\D$ ed un'aggiunzione $L\dashv R$. Possiamo provare a definire un funtore $L/C\colon \C/C\to\D/LC$ nel modo ovvio su oggetti e morfismi:
+\[
+\xymatrix{
+X \ar[d]_x \ar[r]^f & Y \ar[dl]^y \\ C
+}
+\qquad\mapsto\qquad
+\xymatrix{
+LX \ar[d]_{Lx} \ar[r]^{Lf} & LY \ar[dl]^{Ly} \\ LC
+}
+\]
+Usare ingenuamente $R$ come aggiunto destro ci fa finire in $\C/RLC$. Ma allora basta usare l'unità dell'aggiunzione $\eta\colon RL\to1_\C$ per definire il funtore pullback lungo la sua componente $C$, ovvero $\eta_C^\star\colon \C/RLC\to\C/C$. Postcomponendolo ad $R$ individuiamo univocamente un triangolo che è un morfismo in $\C/C$:
+\[
+\xymatrix{
+W \ar[d]_w \ar[r]^g & Z \ar[dl]^z \\ LC
+}
+\qquad\mapsto\qquad
+\xymatrix{
+RW \ar[d]_{Rw} \ar[r]^{Rg} & RZ \ar[dl]^{Rz} \\ RLC
+}
+\qquad\mapsto\qquad
+\xymatrix{
+= \ar[d]_{\eta_C^\star Rw} \ar@{.>}[r] & - \ar[dl]^{\eta_C^\star Rz} \\ C
+}
+\]
+\pol[inline]{Resta da vedere che è davvero un'aggiunzione. Mah. Dev'esserci un modo meno grezzo.}
+\pol[inline]{Meh. Faccio il conto e buonanotte.}
+
+Fissiamo un set $X$.
+
+L'oggetto terminale di $\Sets_{/X}$ è $\mathrm{id}_X$ poiché è l'unico che fa commutare qualsiasi triangolo della condizione di morfismo.
+
+La definizione di prodotto in $\Sets_{/X}$ coincide con quella di pullback in $\Sets$. Vale a dire che che il prodotto di $f\colon A\to X$ e $g\colon B\to X$ è $f\otimes g\colon A\times_X B\to X$, definito dalle composizioni con le proiezioni: $f\otimes g=fp_A=gp_B$.
+
+Se $\Sets_{/X}$ è cartesiana allora mi aspetto che $\mathrm{id}_X$ sia l'identità ed il prodotto sia dato dalla diagonale del pullback come appena spiegato. Ed in effetti è immediato che il pullback di un morfismo lungo un'identità dia il morfismo stesso: $\mathrm{id}_X\times f=f$.
+
+\pol[inline]{Adesso a me basterebbe avere l'aggiunto destro del {\it funtore pullback}, che infatti era la costruzione che avevo tentato di fare inizialmente.}
+
+
+
+
+\subsubsection*{Esperimento-time!}
+
+Vado in $\cate{Top}$.
+Qui posso fare restrizioni come pullback lungo le inclusioni.
+Denotiamole come $i_{UV}\colon U\to V$.
+Sia invece $f^\star$ il funtore pullback lungo la freccia $f$.
+
+Un fibrato su $B$ è un epi $p\colon E\to B$ tale che per ogni punto $x\in B$ esistono un suo intorno $U$ (aperto banalizzante), uno spazio $F_x$ (fibra) ed un omeomorfismo $h_x$ (trivializzazione locale) tali da far commutare
+\[\xymatrix{
+p^\leftarrow(U) \ar[d]_{i_{UB}^\star p} \ar[r]^{h_x} & U\times F_x \ar[dl]^{\pi_U} \\
+U
+}\]
+
+Un aperto è intorno di ogni suo punto quindi dal diagramma segue che tutti gli spazi $F_x$ relativi ai punti di un medesimo aperto banalizzante sono omeomorfi.
+Smettiamo di distinguerli - ovvero, li identifichiamo con la loro classe di omeomorfismo.
+
+Consideriamo due fibrati $p\colon E\to B$ e $q\colon F\to C$ e rispettive trivializzazioni locali. In diagrammi:
+\[\xymatrix{
+U\times F_U \ar[dr]_{\pi_U} & p^\leftarrow(U) \ar[l]_h \ar[d]^{i_{UB}^\star p} &
+q^\leftarrow(V) \ar[d]_{i_{VC}^\star q} \ar[r]^k & V\times G_V \ar[dl]^{\pi_V} \\
+& U & V
+}\]
+
+Siano $p=q$, $h=h_i$, $k=h_j$, $U=U_j$, $V=U_i$ ed $U_{ij}=U_i\cap U_j$. Possiamo incollare i pullback dei due triangoli lungo le inclusioni in $U_{ij}$. Siccome le fibre sono omeomorfe nell'intersezione, otteniamo (lascio implicite le ovvie restrizioni)
+\[\xymatrix{
+U_{ij}\times F_{U_{ij}} \ar[r]^{h_j^{-1}} \ar[dr]_{\pi_{U_{ij}}} & p^\leftarrow(U_{ij}) \ar[d]|{i_{U_{ij}B}^\star p} \ar[r]^{h_i} & {U_{ij}}\times F_{U_{ij}} \ar[dl]^{\pi_{U_{ij}}} \\
+& U 
+}\]
+Ciò significa che
+\[
+h_i\circ h_j^{-1}\colon(x,v)\mapsto(x,g_{ij}(x)(v))
+\]
+dove $g_{ij}$ è una mappa continua che manda punti di $U_{ij}$ in mappe continue su $F_{U_{ij}}$.
+
+Morale: punti dello stesso aperto banalizzante hanno fibre omeomorfe; trivializzazioni locali distinte associano fibre omeomorfe al medesimo punto. Everything works, insomma.
+
+Ora. Sia $B$ uno spazio topologico secondo numerabile ed Hausdorff.
+
+\pol[inline]{uh, sì. praticamente posso ricostruire la definizione di varietà. eccetera}
+
+
+Allarghiamo le maglie. Consideriamo il seguente diagramma:
+\[\xymatrix{
+U\times F_U \ar[dr]_{\pi_U} & p^\leftarrow(U) \ar[l]_h \ar[d]^{i_{UB}^\star p} \ar[r]^{\hat{f}} &
+q^\leftarrow(V) \ar[d]_{i_{VC}^\star q} \ar[r]^k & V\times G_V \ar[dl]^{\pi_V} \\
+& U \ar[r]_f & V
+}\]
+Fissato $\hat f$, ogni sezione di $\pi_U$ determina un unico $f$ che renda il diagramma commutativo
+
+Per definizione di fibrato gli aperti banalizzanti sono anche un ricoprimento aperto dello spazio di base.
+D'altra parte essi sono compatibili sulle intersezioni nel senso visto.
+Fa venire voglia di incollarli.

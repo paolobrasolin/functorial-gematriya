@@ -1,0 +1,157 @@
+\subsection*{Isbell Duality}
+Sia $\C$ una categoria piccola; definiamo due funtori
+\begin{gather*}
+\mathcal O \colon [\C^\text{op}, \Sets]\longrightarrow [\C, \Sets]^\text{op}\\
+\text{Spec}\colon [\C, \Sets]^\text{op} \to [\C^\text{op}, \Sets]
+\end{gather*}
+ponendo $\mathcal O(F)\colon c\mapsto \mathsf{Nat}(F, \hom(-,c))$ e $\text{Spec}(G)\colon c\mapsto \mathsf{Nat}(G, \hom(c,-))$.
+
+Mostrare che $\mathcal O\dashv \text{Spec}$.
+
+
+\subsection*{Limit creation}
+
+Da \hyperlink{limit-creation}{qui} nasce la seguente mail:
+\begin{verbatim}
+Credo tu possa divertirti a mostrare che il funtore dimenticante 
+U\colon \mathbf{Ab}\to \bf Set crea i prodotti; praticamente allo 
+stesso modo dimostri che crea i limiti, e praticamente allo stesso 
+modo lo fai per ogni aggiunzione F\colon \mathcal{C}\leftrightarrows
+\mathbf{Set}\colon U da \cal C concreta per U monadico.
+
+A dirti che il carrier del prodotto e' il prodotto dei carrier e' 
+il fatto che U, essendo un aggiunto destro, rispetta i limiti:
+\end{verbatim}
+\[
+U(A\times B)\cong UA\times UB
+\]
+\begin{verbatim}
+(idem con U(\varprojlim A_i)). Adesso pero' potresti avere diversi 
+modi di mettere su \varprojlim UA_i una struttura di oggetto di 
+\cal C (di gruppo, gruppo abeliano, etc). Qui interviene la monadicita'; 
+il risultato provato su "Sheaves in Geometry" ti mostra che esiste solo 
+un modo (grazie all'universalita' del limite) di mettere sul set 
+\varprojlim UA_i la struttura che vuoi.
+\end{verbatim}
+
+
+
+
+\subsection*{Lipschitz functor}
+
+Da \hyperlink{lipschitz-functor}{qui} nasce la seguente mail:
+\begin{verbatim}
+Per quanto riguarda la lipschitzianita': e' interessante, non ci avevo 
+mai riflettuto. Che conseguenza potrebbe avere in termini di "spazi 
+metrici come categorie arricchite"? Dovrebbe esserci un funtore
+\end{verbatim}
+\[
+\text{Lip}\colon [0,\infty]\text{-}{\bf Cat}\to [0,\infty]
+\]
+\begin{verbatim}
+ma quali proprieta' lo caratterizzano?
+\end{verbatim}
+
+
+
+
+\subsection*{Componentwise $\dashv$ pointwise}
+C'è una \hyperlink{componentwise-pointwise}{questione} sulle categorie concrete e cartesiane chiuse che merita approfondimento. Poi, ci sarebbe anche un \hyperlink{p2c-lipshitz}{conto} da finire.
+
+
+
+
+\subsection*{CMS: terminal vs identity}
+
+Da \hyperlink{terminal-identity}{qui} sono andato a parare su \url{http://www.scienzematematiche.it/forum/viewtopic.php?f=6&t=4977}.
+
+
+
+
+\subsection*{The adjoint combinatorillion}
+
+\subsubsection*{Esposizione}
+
+Ogni terna di funtori aggiunti $A\dashv B\dashv C$ genera due aggiunzioni tra la monade $BA$ e la comonade $BC$ e tra la comonade $AB$ e la monade $CB$:
+\[
+\hom(BAx, y)\cong \hom(Ax, Cy)\cong \hom(x, BCy)
+\]
+Una quaterna di aggiunti $A\dashv B\dashv C\dashv D$ genera quanto segue:
+\begin{itemize}
+\item 2 terne di aggiunti $BA\dashv BC\dashv DC$ e $AB\dashv CB\dashv CD$;
+\item 4 aggiunzioni, perch\'e ciascuna delle precedenti terne ne genera due:
+\[
+BCBA\dashv BCDC\qquad CBAB\dashv CBCD\qquad\dots
+\]
+\end{itemize}
+Feel free to find a pattern for
+\[
+F_1\dashv F_2\dashv F_3\dashv\cdots \dashv F_n
+\]
+
+\subsubsection*{Soluzione}
+
+Consideriamo una catena di $n$ aggiunti:
+\[
+F_1\dashv F_2\dashv F_3\dashv\cdots \dashv F_n
+\]
+
+Vogliamo formare dei funtori componendoli.
+Affinché domini e codomini siano compatibili dobbiamo alternare indici pari e dispari.
+
+Astraiamo il problema: si tratta di formare delle stringhe alternando lettere di due alfabeti. Se essi hanno $p$ e $d$ lettere, allora il numero di stringhe di lunghezza $k>0$ è
+\[
+S(p,d,k)
+=
+p^{\left\lfloor\frac{k}{2}\right\rfloor}
+d^{\left\lceil\frac{k}{2}\right\rceil}
++
+p^{\left\lceil\frac{k}{2}\right\rceil}
+d^{\left\lfloor\frac{k}{2}\right\rfloor}
+\]
+
+Nel nostro caso i due alfabeti sono composti dai funtori con indice pari e da quelli con indice dispari.
+Essi sono rispettivamente $\left\lfloor\frac{n}{2}\right\rfloor$ e $\left\lceil\frac{n}{2}\right\rceil$.
+Il numero di composizioni di lunghezza fissata $k>0$ è quindi
+\[
+S\left(\left\lfloor\frac{n}{2}\right\rfloor,\left\lceil\frac{n}{2}\right\rceil,k\right)
+\]
+
+Prendere l'aggiunto destro (sinistro) di una composizione equivale ad invertire l'ordine ed aumentare (diminuire) gli indici di uno.
+Dunque una composizione che non usa gli ultimi $r>0$ (i primi $l>0$) funtori ha un aggiunto destro (sinistro) che non usa gli ultimi $r-1$ (i primi $l-1$) funtori.
+Allora per ricorsione esso sta in una catena di aggiunzioni con almeno $r$ ($l$) funtori alla propria destra (sinistra). Il caso di bordo $r=0$ ($l=0$) non pone alcuna restrizione.
+Non usare gli ultimi $r\geq0$ funtori significa diminuire il numero di funtori utilizzabili di $r$.
+Non usare i primi $l\geq0$ funtori significa diminuire di $\left\lfloor\frac{l}{2}\right\rfloor$ il numero di funtori con indice pari e di $\left\lceil\frac{l}{2}\right\rceil$ il numero di funtori con indice dispari.
+
+Allora abbiamo subito il numero di composizioni di $k>0$ funtori, appartenenti ad una catena di $n>0$ aggiunti, che stanno in una catena di aggiunzioni con almeno $n>r\geq0$ ($n>l\geq0$) funtori alla propria destra (sinistra):
+\[
+F(n,k,l,r)=
+S\left(
+\left\lfloor\frac{n-r}{2}\right\rfloor-\left\lfloor\frac{l}{2}\right\rfloor
+,
+\left\lceil\frac{n-r}{2}\right\rceil-\left\lceil\frac{l}{2}\right\rceil
+,
+k\right)
+\]
+
+Adesso possiamo produrre facilmente il numero di composizioni di lunghezza $k$ che stanno in una catena di aggiunti con esattamente $r$ ($l$) funtori alla propria destra (sinistra):
+\[
+G(n,k,l,r)=
+F(n,k,l,r)-F(n,k,l,r+1)
+-F(n,k,l+1,r)+F(n,k,l+1,r+1)
+\]
+
+Il numero di catene di $j$ aggiunzioni tra funtori che siano composizioni di $k$ funtori di una catena di $n$ aggiunzioni è invece calcolabile come
+\[
+H(n,k,j)=G(n,k,0,j-1)=G(n,k,j-1,0)
+\]
+
+Una veloce implementazione in Haskell:
+\begin{verbatim}
+fl = floor
+ce = ceiling
+s p d k = p^(fl(k/2)) * d^(ce(k/2)) + d^(fl(k/2)) * p^(ce(k/2))
+f n k l r = s ((fl((n-r)/2))-(fl(l/2))) ((ce((n-r)/2))-(ce(l/2))) k
+g n k l r = (f n k l r)-(f n k l (r+1))-(f n k (l+1) r)+(f n k (l+1) (r+1))
+h n k j = g n k (j-1) 0
+\end{verbatim}

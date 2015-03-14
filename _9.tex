@@ -1,0 +1,182 @@
+\begin{MyExercise} La categoria degli insiemi e funzioni \`e tale per cui ogni $\Sets_{/X}$ \`e ancora cartesiana chiusa: descrivere esplicitamente la struttura cartesiana chiusa di $\Sets_{/X}$ e l'isomorfismo
+\[
+\Sets_{/X}(f\otimes g, h)\cong \Sets_{/X}(f, [g,h])
+\]
+valido per $f,g,h$ funzioni verso l'insieme $X$.
+
+Se $\Cat$ \`e la categoria fatta da categorie (piccole) e funtori tra esse, provare che $\Cat_{/X}$ non \`e cartesiana chiusa se $X=\{0\to 1\to 2\}$ (hint: mostrare che essa è cartesiana --i prodotti sono dati dai pullback-- ma che il funtore prodotto $X\otimes-$ non rispetta i colimiti, cosa che farebbe se avesse come aggiunto destro l'hom interno).
+\end{MyExercise}
+
+Usando notazioni e risultati dell'esercizio precedente sappiamo immediatamente che $[\underline{X},\Sets]$ è cartesiana chiusa, con prodotti ed esponenziali eseguiti pointwise su $\Sets$. Mostriamo che è equivalente a $\Sets_{/X}$ e quindi anche quest'ultima è cartesiana chiusa.
+
+Consideriamo il funtore $F:\Sets_{/X}\to[\underline{X},\Sets]$ definito come segue (pedice ed apice di una barra verticale giustapposta ad una funzione denoteranno restrizione e corestrizione):
+\[\begin{aligned}
+(a\colon A\to X) &\mapsto (Fa\colon x\mapsto a^{-1}(x)) \\
+(f\colon a\to b) &\mapsto \left(Ff\colon (Ff)_x=f\vert_{(Fa)x}^{(Fb)x}\right)
+\end{aligned}\]
+Sia invece $G\colon[\underline{X},\Sets]\to\Sets_{/X}$ definito così (il coprodotto è inteso come quello della categoria freccia su $\Sets$):
+\[\begin{aligned}
+(A\colon \underline{X}\to\Sets) &\mapsto \left(\coprod_{x\in X}(Ax\to \{x\})\right)\\
+(\eta\colon A\to B) &\mapsto \left(\coprod_{x\in X}\eta_x\colon GA\to GB\right)
+\end{aligned}\]
+
+Verificare che le due composizioni sono funtori identici è immediato grazie alle proprietà elementari di set e funzioni. Prima $GF$
+\[\begin{aligned}
+(a\colon A\to X) &\mapsto \left(\coprod_{x\in X}(a^{-1}(x)\to \{x\})\right)\\
+(f\colon a\to b) &\mapsto \left(\coprod_{x\in X}f\vert_{a^{-1}(x)}^{b^{-1}(x)}\colon a\to b\right)
+\end{aligned}\]
+e poi $FG$
+\[\begin{aligned}
+(A\colon \underline{X}\to\Sets) &\mapsto (FGA\colon x\mapsto (GA)^{-1}(x) = Ax) \\
+(\eta\colon A\to B) &\mapsto \left(FG\eta\colon (FG\eta)_x=G\eta\vert_{(FGA)x}^{(FGB)x}=\eta_x\right)
+\end{aligned}\]
+Ecco. Abbiamo l'equivalenza.
+
+Srotolando il prodotto e l'esponenziale otteniamo
+\[a
+\otimes b
+=
+G(Fa\times Fb)
+=
+\coprod_{x\in X}\left(a^{-1}(x)\times b^{-1}(x)\to\{x\}\right)
+\]
+
+\[
+[a,b]
+=
+G(Fa^{Fb})
+=
+\coprod_{x\in X}\left(b^{-1}(x)^{a^{-1}(x)}\to\{x\}\right)
+\]
+
+Per aprire l'isomorfismo dell'aggiunzione passiamo attraverso l'equivalenza ed usiamo il currying di $\Sets$ pointwise. Schematicamente, compongo gli isomorfismi seguenti
+\[
+(f\otimes g,h)
+\cong
+(Ff\times Fg,Fh)
+\cong
+(Ff,Fh^{Fg})
+\cong
+(f,[g,h])
+\]
+per trovare una bijezione tra i morfismi orizzontali che fanno commutare
+\[
+\xymatrix{
+\coprod_{x\in X}f^{-1}(x)\times g^{-1}(x) \ar[r] \ar[d]^{f\otimes g} & H \ar[dl]^h \\
+X
+}
+\qquad
+\xymatrix{
+F \ar[r] \ar[dr]^f & \coprod_{x\in X}h^{-1}(x)^{g^{-1}(x)} \ar[d]^{[g,h]} \\
+& X
+}
+\]
+
+Più in dettaglio,
+\[\begin{aligned}
+\left( z: \coprod_{x\in X}f^{-1}(x)\times g^{-1}(x) \to H \right)
+& \mapsto
+\left( Fz: (Fz)_x=z\vert_{f^{-1}(x)\times g^{-1}(x)}^{h^{-1}(x)} \right) \\
+& \mapsto
+\left( F\hat{z}: (F\hat{z})_x=\hat{z}\vert_{f^{-1}(x)}^{h^{-1}(x)^{g^{-1}(x)}} \right) \\
+& \mapsto
+\left( \hat{z}: F \to \coprod_{x\in X}h^{-1}(x)^{g^{-1}(x)} \right)
+\end{aligned}\]
+dove il secondo passaggio è l'usuale currying.
+Per leggere l'isomorfismo nella direzione opposta basta girare le frecce.
+
+\pol[inline]{Puff. Non sono sceso nei dettagli ovvi, sennò non se ne usciva più. L'essenziale dovrebbe esserci. }
+
+
+\begin{oss}
+Questo risultato si rifrasa dicendo che $\Cat$ non \`e \emph{localmente cartesiana chiusa}, ovvero non tutte le slice $\Cat/\C$ sono cartesiane chiuse. 
+
+Esso \`e una motivazione per il \emph{teorema di Conduch\'e}: dico che un oggetto $\C$ di $\Cat$ \`e \emph{esponenziabile} se $\C\times -$ ha un aggiunto destro $(-)^\C$; il teorema di Conduch\'e dice che un funtore $F\colon \D\to\C$ \`e esponenziabile in $\Cat/\C$ se e solo se per ogni $f\in\hom(\D)$ e ogni fattorizzazione $F(f)=a\circ b$, esistono $a',b'$ tali che $F(a')=a, F(b')=b$. Non ti chiedo di provare questo, bens\`i il
+\begin{thm}[Bonus]
+Per ogni $\C$ piccola, $[\C,\Sets]$ \`e localmente cartesiana chiusa.
+\end{thm}
+(hint: mostrare che $[\C,\Sets]/F\cong [\cate{A}_F, \Sets]$ per ogni $F\colon \C\to \Sets$.)
+{\proof
+La categoria $[\C,\Sets]/F$ ha come oggetti le trasformazioni naturali verso $F\colon\C\to\Sets$.
+Un morfismo $\phi\colon\alpha\to\beta$ è una trasformazione naturale tale che $\alpha=\beta\phi$ (si tratta di composizione verticale, componentwise.)
+
+\sout{Sia $\cate{A}_F$ la categoria che ha come oggetti quelli di $\C$ e per morfismi $\cate{A}_F(x,y)=\Sets(Fx,Fy)$.
+Si chiama {\it immagine piena} di $F$, e tenere gli oggetti originali a dispetto del nome serve a fare in modo che immagini di frecce non componibili non lo diventino.}
+\fou[inline]{Qualcosa non mi torna, perch\'e non capisco dove mandi i morfismi di $\cate{A}_F$: se definisci $\cate{A}_F(x,y) = \Sets(Fx, Fy)$, nulla ti assicura che una funzione $f\colon Fx\to Fy$ venga da $\varphi \colon x\to y$ in $\C$; questo \`e vero se $F$ \`e pieno. In generale poi deve anche essere fedele perch\'e $\varphi$ sia univocamente determinata. }
+\pol[inline]{Sì, avevo scritto male. Intendevo il set delle immagini dei morfismi tra $x$ ed $y$ tramite $F$. Comunque, falsa partenza.}
+
+Sia $\cate{A}_F$ la categoria degli elementi di $F$. Ovvero, la categoria comma $(\star\vert F)$ intendedo che $\star$ sia il funtore dalla categoria terminale in $\Sets$, costante sul terminale di $\Sets$. Gli oggetti sono funzioni $x\colon\star\to Fc$, o equivalentemente delle coppie $(c,x)$ con $c\in\C$ ed $x\in Fc$. I morfismi da $(c,x)$ a $(c',x')$ sono funzioni $f\colon c\to c'$ tali che $(Ff)x=x'$.
+
+$\cate{A}_F$ è piccola, quindi $[\cate{A}_F, \Sets]$ è cartesiana chiusa. Costruiamo allora l'equivalenza
+\[ \psi\colon [\cate{A}_F, \Sets] \to [\C,\Sets]/F \]
+
+Intenderemo il coprodotto di frecce come quello della categoria delle frecce.
+
+Un funtore $A\in[\cate{A}_F, \Sets]$ induce il funtore $\hat{A}\in[\C,\Sets]$ così definito su oggetti e morfismi di $\C$:
+\[
+\hat{A}c=\coprod_{x\in Fc}Ax
+\qquad
+\hat{A}f=\coprod_{x\in Fc}A(f_x)
+\]
+dove intendiamo che $f_x$ sia $f\colon c\to d$ vista come morfismo di $\cate{A}_F$ con dominio $(c,x)$.
+
+L'immagine di $A$ tramite l'equivalenza sarà la trasformazione naturale
+\[
+\psi A\colon \hat{A} \to F
+\qquad
+(\psi A)_c = \coprod_{x\in Fc}\left(Ax\to\{x\}\right)
+\]
+mentre l'immagine di una trasformazione naturale $\eta\colon A\to B$ sarà la trasformazione naturale
+\[
+\psi \eta\colon \hat{A} \to \hat{B}
+\qquad
+(\psi \eta)_c = \coprod_{x\in Fc}\eta_x
+\]
+
+$\psi$ è densa, poiché la corrispondenza iniziale tra funtori è biunivoca a meno di un isomorfismo naturale. $\psi$ è pienamente fedele, poiché esiste sempre un unico modo di scrivere come coprodotto le componenti dei morfismi della categoria slice.
+\pol[inline]{Non sarò pedante perché mi pare che {\it si veda}.}
+\qed}
+\end{oss}
+
+\fou[inline]{Vediamo se riesco a fissare il punto finale senza spoilerarlo: mostra che
+\begin{itemize}
+\item Denotando qui e altrove $\cate n$ come la categoria con esattamente $n$ oggetti e frecce componibili
+\[
+\{1\to 2\to\dots \to (n-1)\to n\}
+\]
+si ha che il diagramma
+\[
+\xymatrix{
+& \cate{1} \ar[dl] \ar[ddr]|\hole \ar[rr] && \cate{2} \ar[ddl]|\hole \ar[dr] \\
+\cate{2} \ar[drr] \ar[rrrr] &&&& \cate{3} \ar@{=}[dll] \\
+&& \cate 3 
+}
+\]
+\`e un pushout in $\cate{Cat}/\cate{3}$ (la $X$ dell'esercizio \`e proprio $\cate 3$), se il quadrato superiore \`e definito da (notazioni autoesplicative)
+\[
+\xymatrix{
+\{1\} \ar[r]\ar[d] & \{1\to 2\}\ar[d]\\
+\{0\to 1\} \ar[r] & \{0\to 1\to 2\}
+}
+\]
+\item Mostra come agisce $-\otimes \left[\begin{smallmatrix} \cate 2 \\ \downarrow \\ \cate 3 \end{smallmatrix}\right]$ su questo pushout.
+\item Mostra che il diagramma che risulta \emph{non} \`e un pushout in $\cate{Cat}/\cate 3$.
+\end{itemize}}
+
+\pol[inline]{
+(Co)prodotti in una slice ammontano a pullback (pushout) nella categoria sottostante.
+Date due frecce nella slice $F,G$ verso l'oggetto $Z\colon\cate{H}\to\cate{3}$ si ha dalle condizioni di morfismo su esse che $ZF(0\to1)=0\to1$ e $ZG(0\to1)=1\to2$.
+Dalla commutatività del quadrato si ottiene $F1=G0$.
+D'altra ciò implica che $Z(F0\to F1 = G0 \to G1)=0\to1\to2$ quindi la freccia universale è determinata univocamente ed il quadrato sopra è un pushout.
+Agiamo ora per pullback lungo il funtore verticale di destra:
+\[
+\xymatrix{
+\{0\} \ar[rrr]\ar[ddd] &&& \{0\to2\}\ar[ddd] \\
+&\emptyset \ar[r]\ar[ul]\ar[d] & \{2\}\ar[ur]\ar[d] \\
+&\{1\} \ar[r]\ar[dl] & \{1\to 2\}\ar[dr] \\
+\{0\to 1\} \ar[rrr] &&& \{0\to 1\to 2\}
+}
+\]
+Il quadrato sopra di certo non è un pushout perché dimentica che deve esserci una freccia tra le immagini di $0$ e $2$.
+E bon.
+}

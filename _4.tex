@@ -1,0 +1,27 @@
+\begin{MyExercise}
+La categoria dei campi (pensata come sottocategoria piena degli anelli) non \`e cartesiana (un campo finito non pu\`o avere un numero arbitrario di elementi; e qual \`e la caratteristica del prodotto di due campi di diversa caratteristica?)
+\end{MyExercise}
+La categoria dei campi è una sottocategoria piena della categoria degli anelli, poiché un campo è un anello. Gli omomorfismi di anelli esistono solo se la caratteristica del codominio divide quella del dominio; la ragione è che essi preservano le unità additiva e moltiplicativa. I campi hanno solo zero e numeri primi come caratteristiche; la ragione è che se $p=0$ non fosse primo potrei fattorizzarlo ed avrei un divisore dello zero, proibito in un campo.
+\fou[inline]{Di pi\`u: gli \emph{anelli integri} hanno zero o un primo come caratteristica. La ragione io la vedo cos\`i: nella categoria degli anelli (commutativi e unitari, coi morfismi che rispettano l'1) $\mathbb Z$ \`e un oggetto iniziale; la caratteristica di $R$ \`e il generatore del nucleo dell'unico morfismo $\mathbb Z\to R$ univocamente determinato dal mandare $1$ in $1_R$. Siccome $\mathbb Z$ \`e un anello integro, questo generatore \`e un suo ideale primo, aka un numero primo.}
+
+\pol[inline]{Hm. Ok, non so l'algebra. Allora.
+
+$\mathbb Z$ è iniziale in $\cate{Ring}$. Infatti la proprietà di morfismo fissa univocamente una freccia, che esiste sempre, verso qualsiasi altro anello.
+
+La preimmagine di un ideale primo tramite un omomorfismo di anelli è un ideale primo. L'anello zero è un ideale primo di un anello commutativo esattamente quando quest'ultimo è un dominio integrale. Segue che il kernel di $f:{\mathbb Z}\rightarrow R$ è un ideale primo di $\mathbb Z$ se $R$ è un dominio integrale. Gli ideali primi di $\mathbb Z$ sono tutti e solo i $p{\mathbb Z}$ per $p$ primo o zero - ed il loro generatore è proprio $p$. La verifica che questi corrisponde alla caratteristica di $R$ è immediata.
+
+I campi sono domini integrali, quindi posso ragionare della loro caratteristica in $\cate{Cring}$ per quanto detto. Hm. Ok. Figo.}
+
+Dunque se i prodotti esistessero ci sarebbero le proiezioni ed il prodotto sarebbe obbligato ad avere la stessa caratteristica di ognuno dei fattori - ovvero, non possono esistere prodotti di campi con caratteristica differente. La categoria non è cartesiana.
+
+\pol[inline]{\sout{Non ho capito lo scopo dell'hint sulla finitezza del numero di elementi di un campo finito.}}
+
+\fou[inline]{Esiste esattamente un campo finito, a meno di isomorfismo, con $p^n$ elementi, dove $p$ \`e un primo e $n\in\mathbb N_{\ge 1}$; viceversa, un campo finito \`e \emph{obbligato} ad avere per cardinalit\`a la potenza di un primo: non pu\`o esistere un campo con 100 elementi. D'altra parte il prodotto di $\mathbb F_{25}$ ed $\mathbb F_4$ se esiste deve avere 100 elementi, assurdo.
+
+Questa \`e la ragione, tra l'altro, per cui $U\colon \bf Fields\to Set$ non ha un aggiunto, dato un insieme di cardinalit\`a arbitraria non esiste un campo che ha  i suoi elementi ``moltiplicati, addizionati e divisi liberamente''.}
+
+\pol[inline]{
+Come controesempio mi sembra più semplice pensare che non esiste il campo prodotto se i fattori hanno caratteristiche differenti perché è impossibile che esistano le proiezioni, come dicevo, ma è solo perché non sono familiare con questi oggetti. Comunque, ora ho capito.
+
+Tranne una cosa. Non ho capito perché il numero di elementi del prodotto {\it dovrebbe} essere il prodotto dei numeri di elementi dei fattori. In relazione all'ultima cosa che dici, ok, non ho una costruzione per produrre {\it campi liberi}, ovvero il forgetful $U$ non è un aggiunto destro e quindi non posso affermare che $U(F\times G)=U(F)\times F(G)$, da cui seguirebbe la considerazione sulla taglia. Ma non capisco perché l'esistenza del prodotto, da sola, avrebbe quell'implicazione sul numero degli elementi.
+}

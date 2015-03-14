@@ -1,0 +1,48 @@
+\begin{MyExercise}
+Se la categoria $\Top$ degli spazi topologici ha una struttura monoidale chiusa, allora $X\otimes Y$ ha come insieme sottostante il prodotto cartesiano, e l'oggetto unit\`a \`e il terminale; in pi\`u, l'insieme sottostante all'hom interno $[X,Y]$ \`e l'insieme delle funzioni continue $X\to Y$. (potrebbe essere laborioso, ma tu non demordere)
+\end{MyExercise}
+Sia $U:\C\rightarrow\Sets$ un funtore il cui dominio sia una categoria monoidale chiusa.
+Date $D\dashv U\dashv I$, abbiamo due coppie di isomorfismi paralleli:
+\[\begin{array}{lcccr}
+U[A,B]
+&\cong&
+\Sets( \star, U[A,B] )
+&\cong&
+\C( D\star, [A,B] ) \\
+\C( A, B )
+&\cong&
+\C( 1 \otimes A, B )
+&\cong&
+\C( 1, [A,B] ) \\
+\Sets( U ( X \otimes Y ), Z )
+&\cong&
+\C( X \otimes Y, IZ )
+&\cong&
+\C( X, [Y,IZ] ) \\
+\Sets( UX \times UY, Z )
+&\cong&
+\Sets( UX, [UY,Z] )
+&\cong&
+\C( X, I[UY,Z] )
+\end{array}\]
+Suturando le paia con Yoneda (usando $A\cong1$) otteniamo
+\[\begin{array}{lcr}
+U[A,B] \cong \C(A,B)
+&\quad\Leftrightarrow\quad&
+D\star \cong 1 \\
+U ( X \otimes Y ) \cong UX \times UY
+&\quad\Leftrightarrow\quad&
+[W,IZ] \cong I[UW,Z]
+\end{array}\]
+Ognuno dei due isomorfismi sinistri implica $U1\cong\star$, lo si vede sviluppando per $A\cong1$, $B\cong D\star$, $X=I\star$ ed $Y=1$. Notiamo che le due doppie implicazioni sono totalmente indipendenti e poggiano ognuna su una sola delle due aggiunzioni, mai incrociate nei conti. Per finire, $U\vdash I$ garantisce l'esistenza di un oggetto terminale in $\C$, ovvero $T=I\star$.
+
+Ora scendiamo nel concreto.
+La categoria {\Top} è legata a $\Sets$ da tre funtori in aggiunzione $D\dashv U\dashv I$.
+Il funtore centrale $U$ assegna ad uno spazio topologico il set soggiacente.
+$D$ ed $I$ dotano un set rispettivamente della topologia discreta e della topologia indiscreta.
+Ognuno è l'identità sui morfismi.
+Le bijezioni naturali denunciano la proprietà caratterizzante delle due topologie; ogni funzione con (co)dominio (in)discreto è continua.
+
+Rimangono due controlli da fare. Noto solo che per come sono definiti i funtori, $DX\cong IX$ sse $X\cong\star$ e quindi $1$ è terminale.
+
+\pol[inline]{Da finire in modo bello, un giorno.}

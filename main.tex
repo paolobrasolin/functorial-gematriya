@@ -1,0 +1,59 @@
+\documentclass[a4paper]{report}
+
+\input{amble}
+
+\usepackage[normalem]{ulem}
+\usepackage{pgffor, faktor, tikz-cd}
+
+%===================================
+\newcommand*{\titleGM}{
+				\begingroup 
+				\hbox{ 
+				\hspace*{0.2\textwidth} 
+				\rule{1pt}{\textheight} 
+				\hspace*{0.05\textwidth} 
+				\parbox[b]{0.75\textwidth}{ 
+					{\noindent\Huge\bfseries \textcolor{blue!40}{Functorial} \\[0.5\baselineskip] 							\textcolor{blue!60}{G\={e}ma\d{t}riy\={a}}}\\[2\baselineskip] 
+					{\large \textit{Not another exercises book in \textsc{ct}}}\\[4\baselineskip]
+					{\Large \textsc{\textsc{p.b.}\,\&\:\textsc{f.l.}}} % Author name
+					\vspace{0.5\textheight}
+					{\noindent\today\quad\currenttime}\\[\baselineskip]}}
+				\endgroup}
+%==================================
+
+\newcommand{\pol}[2][]
+{\todo[color=red!20,caption={}, #1]{#2}}
+
+\newcommand{\fou}[2][]
+{\todo[color=green!20,caption={}, #1]{#2}}
+
+\begin{document}
+
+\thispagestyle{empty}
+\titleGM
+\newpage
+\tableofcontents
+\newpage
+
+\chapter{Cartesian Closed Categories}
+\foreach \n in {1,...,9}{
+\input{_\n}}
+%\input{_10}
+%\input{_11}
+
+\chapter{Sheaves}
+\foreach \n in {18,...,25}{
+\input{_\n}}
+\input{_25b}
+\input{_25c}
+\input{_25d}
+
+\chapter{Topoi}
+
+\chapter{Cetera}
+\section{Stray questions}
+\input{infty}
+%\section{Junkyard}
+%\input{junkyard}
+
+\end{document}

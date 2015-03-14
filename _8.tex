@@ -1,0 +1,159 @@
+\begin{MyExercise}  Siano $X,Y$ insiemi, $\mathcal PX, \mathcal P(X\times Y)$ gli insiemi delle parti guardati come categorie; consideriamo $\pi_X\colon X\times Y\to X$ la proiezione su uno dei fattori: mostrare che esiste una terna di aggiunti
+\[
+\xymatrix{
+\mathcal P X \ar[d]|{\pi^*} \\
+\mathcal P(X\times Y).\ar@<10pt>@{}[u]|\dashv\ar@<-10pt>@{}[u]|\dashv\ar@<15pt>[u]^{\exists}\ar@<-15pt>[u]_\forall
+}
+\]
+\end{MyExercise}
+
+Per definire in modo appetibile le categorie di cui abbiamo bisogno ci serve la
+{\prop Se $\C$ è piccola e $\D$ è completa e cartesiana chiusa allora $[\C,\D]$ è cartesiana chiusa.}
+{\proof
+Se esiste un funtore esponenziale tale che
+\[
+\D^\C(F\times G,H)
+\cong
+\D^\C(F,H^G)
+\]
+allora Yoneda mi dice che se $\C$ fosse $\D$-arricchita
+\[
+H^G(c)
+\cong
+\D^\C(\C(c,-),H^G)
+\cong
+\D^\C(\C(c,-)\times G,H)
+\cong
+\int_{x\colon\C}\D((\C(c,-)\times G)x,Hx)
+\]
+D'altra parte $\D$ è completa ed il prodotto in $\D^\C$ può essere definito pointwise. Inoltre, essa è cartesiana chiusa. Quindi
+\[
+H^G(c)
+\cong
+\int_{x\colon\C}\D(\C(c,x)\times Gx,Hx)
+\cong
+\int_{x\colon\C}\D(\C(c,x), Hx^{Gx})
+\cong
+\int_{x\colon\C}\left(Hx^{Gx}\right)^{\C(c,x)}
+\]
+e siccome $\D$ è anche dotata naturalemente di un $\Sets$-cotensore possiamo concludere
+\[
+H^G(c)
+\cong
+\int_{x\colon\C} \prod_{\C(c,x)} Hx^{Gx}
+\]
+Notiamo che l'ultima espressione non ha bisogno di alcuna struttura arricchita per essere scritta: sono sufficienti le proprietà di $\C$ e $\D$ dell'enunciato. Allora adottiamola come definizione del funtore esponenziale e verifichiamo che funziona correttamente!
+\[\begin{array}{rclcl}
+\D^\C(F,H^G)
+&\cong&
+\int_{c:\C}\D(Fc,H^Gc)
+&\cong&
+\int_{c:\C}\D\left(Fc,\int_{x:\C} \prod_{\C(c,x)} Hx^{Gx}\right) \\
+&\cong&
+\int_{c:\C}\int_{x:\C}\prod_{\C(c,x)} \D\left(Fc, Hx^{Gx}\right)
+&\cong&
+\int_{x:\C} \D\left(\int^{c:\C}\coprod_{\C(c,x)}Fc, Hx^{Gx}\right) \\
+&\cong&
+\int_{x:\C} \D\left(\int^{c:\C}Fc\times\C(c,x), Hx^{Gx}\right)
+&\cong&
+\int_{x:\C} \D(Fx, Hx^{Gx}) \\
+&\cong&
+\int_{x:\C} \D(Fx\times Gx, Hx)
+&\cong&
+\int_{x:\C} \D((F\times G)x, Hx) \\
+&\cong&
+\D^\C(F\times G, H)
+\end{array}
+\]
+L'unica passaggio meno che elementare necessita l'uso del $\Sets$-tensore naturale di $\D$.
+\qed}
+
+Il secondo ingrediente è $\mathrm{Obj}$, il funtore che assegna ad una categoria piccola il set dei suoi oggetti, e ad un funtore la funzione che ne rappresenta l'azione sui set di oggetti. Ci interessa il suo aggiunto sinistro:
+\[ \Cat(\underline{S},C) \cong \Sets(S,\mathrm{Obj}(C)) \]
+Si vede immediatamente che $\underline{(-)}$ deve assegnare ai set le categorie discrete di cui essi costituiscono la collezione di oggetti. Inoltre manda le funzioni nei funtori la cui azione sia descritta da esse - ciò è possibile farlo univocamente poiché i domini sono discreti e le identità vengono rispettate.
+\fou[inline]{S\`i: un risultato un po' pi\`u liscio \`e il seguente: esiste una stringa di aggiunzioni
+\[
+\xymatrix@C=2cm{
+\cate{Cat} \ar@/^2pc/[r]^{\pi_0}_\perp \ar@/_.7pc/[r]|{\text{Obj}}_\perp \ar@{}[r]|\perp & \ar@/_.7pc/[l]|{\underline{(-)}} \ar@/^2pc/[l]^{\cal G}\Sets
+}\]
+dove $\pi_0\colon \bf Cat\to Sets$ è il funtore che manda $\bf C$ nell'insieme delle sue componenti connesse, $\underline{(-)}$ il funtore che manda un insieme nella categoria discreta su quell'insieme, $\text{Obj}(-)$ manda una categoria nell'insieme dei suoi oggetti e $\cal G$ è il funtore che manda un insieme $X$ nel gruppoide connesso generato da $X$, ovvero nel gruppoide che ha per oggetti esattamente gli elementi di $X$, e tra ogni coppia di oggetti esattamente un isomorfismo.
+
+Ci\`o ti da molte pi\`u informazioni su cosa fa chi a chi.}
+\pol[inline]{Bello! Avevo provato a proseguire la catena di aggiunzioni così, ma non mi era riuscito.}
+Possiamo finalmente iniziare!
+Definiamo il funtore che manda un set nella categoria delle sue parti come
+\[\mathcal{P}=[\underline{(-)},\mathbf{2}]\]
+Allora per la proposizione precedente abbiamo immediatamente che le categorie delle parti sono cartesiane chiuse. Infatti tutte le categorie sono piccole per definizione e le proprietà di $\mathbf{2}$ si verificano facilmente ricordando che essa è
+\[\xymatrix{
+0 \ar@(ul,dl)[]|{} \ar[r] & 1 \ar@(dr,ur)[]|{}
+}\]
+
+La categoria $\mathcal{P}$ è in pratica la categoria dei {\it funtori caratteristica} dei subset di $X$, nel senso che un oggetto è nel subset corrispondente esattamente quando la sua immagine tramite il funtore caratteristica è $1$. 
+\fou[inline]{Ecco, qui non capisco cosa hai fatto, o meglio \emph{perch\'e} lo hai fatto: sostanzialmente stai dicendo che le funzioni $X\to \{0,1\}$ sono in corrispondenza con i funtori $\underline{X}\to \cate{2}$; d'altra parte nessuna delle due cose ti ha dato davvero delle informazioni aggiuntive: $\underline{X}$ \`e solo un modo di guardare $X$ come una categoria --discreta--, e la frase precedente a questa nota credo significhi solo che per ogni $F\colon \underline{X}\to \cate{2}$, $\{F^{-1}0, F^{-1}1\}$ \`e una partizione di $X$. La qual cosa identifica unicamente un sottoinsieme $U\subset X$; }
+\pol[inline]{L'ho fatto perché
+\begin{itemize}
+\item mi piaceva;
+\item mi evita di parlare di sottoggetti o di sottocategorie piene di mono o altre cose che trovavo meno cristalline e che non avevo voglia di toccare;
+\item mi dava una costruzione molto pulita per il funtore {\it categoria delle parti di un insieme};
+\item mi permette di vedere gratuitamente che la categoria delle parti è cartesiana chiusa.
+\end{itemize}
+}
+La struttura di $\mathbf{2}$ trivializza la condizione di naturalità riducendola all'esistenza - ovvero, si ha un'inclusione esattamente quando tutte le componenti della trasformazione naturale esistono.\fou[inline]{La trasformazione naturale\dots tra chi e chi?}\pol[inline]{I morfismi di $\mathcal{P}X$ devono essere le inclusioni tra i subset di $X$, moralmente. Se prendo una freccia di $\mathcal{P}X$, diciamo $\eta\colon\chi_A\to\chi_B$, essa deve rispettare la naturalità; essendo la categoria discreta ho solo quadrati del tipo
+\[\xymatrix{
+\chi_Ax \ar[r]^{\eta_x} \ar[d]_{\chi_A\mathrm{id}_x} & \chi_Bx \ar[d]^{\chi_B\mathrm{id}_x} \\
+\chi_Ax	\ar[r]_{\eta_x}								& \chi_Bx
+}\]
+Cioè, mi basta che esista per ogni $x\in\underline{X}$ una freccia
+\[\xymatrix{
+\chi_Ax \ar[r]^{\eta_x} & \chi_Bx\\
+}\]
+Essa deve essere una freccia di $\mathbf{2}$ e quindi l'unico caso in cui non esiste è quando $\chi_Ax=1$ e $\chi_Bx=0$. Ovvero, quando $x$ è in $A$ ma non in $B$, ovvero quando l'inclusione è impossibile. Le componenti della trasformazione naturale rendono conto, punto per punto, dell'esistenza di un'inclusione.
+} Esse sono in bijezione con gli elementi del set che soggiace all'oggetto. L'ostruzione all'esistenza di una trasformazione naturale è l'impossibilità per le componenti di essere $1\rightarrow 0$ ovvero il set soggiacente al dominio non puo avere elementi che quello a codominio non ha. Questo riproduce esattamente le normali inclusioni.
+
+Una funzione $f:X\rightarrow Y$ induce un funtore $\underline{f}:\underline{X}\rightarrow\underline{Y}$ che a sua volta induce la precomposizione $\underline{f}^\star:[\underline{Y},\mathbf{2}]\rightarrow[\underline{X},\mathbf{2}]$. Gli aggiunti destro e sinistro di quest'ultima sono le estensioni di Kan destra e sinistra lungo $\underline{f}$. Richiamando le notazioni della consegna
+\[
+\exists_f A
+\cong
+\text{Lan}_{\underline{f}}A
+\cong
+\int^{x:\underline{X}}\underline{Y}(\underline{f}x,-)\times Ax
+\qquad
+\forall_f A
+\cong
+\text{Ran}_{\underline{f}}A
+\cong
+\int_{x:\underline{X}}Ax^{\underline{Y}(-,\underline{f}x)}
+\]
+Poiché stiamo integrando su categorie discrete è possibile scrivere le (co)fini come (co)prodotti. Possiamo fare lo stesso in modo naturale anche coi $\Sets$-(co)tensori su $\mathbf{2}$. Usando la notazione di join e meet, particolarmente adatta a $\mathbf{2}$, abbiamo
+\[
+\exists_f A
+\cong
+\bigvee_{x\in\underline{X}} \bigvee_{n\in\underline{Y}(\underline{f}x,-)} Ax
+\qquad
+\forall_f A
+\cong
+\bigwedge_{x\in\underline{X}} \bigwedge_{n\in\underline{Y}(-,\underline{f}x)} Ax
+\]
+Essendo $\underline{Y}$ discreta, il (co)prodotto su di essa è unario se la variabile libera è $\underline{f}x$ e nullario altrimenti. In pratica, sono identici. Confondendo gli oggetti categoriali con quelli set teoretici e gli insiemi con le loro caratteristiche possiamo allora scrivere
+\[
+\exists_f A
+=
+\{y\in Y \vert \exists x\in A, y=f(x)\}
+\qquad
+\forall_f A
+=
+\{y\in Y \vert \forall x\in A, y=f(x)\}
+\]
+e dire che le estensioni scritte sopra sono i funtori caratteristica di questi insiemi.
+
+Il caso particolare della consegna dà per $P\subseteq X\times Y$
+\[
+\exists P
+=
+\{x\in X \vert \exists (x',y)\in P, x=x'\}
+\qquad
+\forall P
+=
+\{x\in X \vert \forall (x',y)\in P, x=x'\}
+\]
+che corrispondono alle quantificazioni sulla proposizione rappresentata da $P$.

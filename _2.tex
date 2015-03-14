@@ -1,0 +1,230 @@
+\begin{MyExercise}
+La categoria dei poset (morfismi: funzioni monotone) è cartesiana chiusa; la categoria degli spazi metrici limitati (quelli dove $\sup_{x,y\in X}d(x,y)<\infty$, e con morfismi le funzioni lipschitziane) è cartesiana chiusa; 
+\end{MyExercise}
+
+La categoria $\cate{Pos}$ ha come oggetti i poset, ovvero set dotati di relazioni binarie riflessive, antisimmetriche e transitive. Esse sono preservati dalle funzioni monotone, i morfismi della categoria.
+
+\pol[inline]{Domanda: $\Sets$ è cartesiana chiusa. Ciò permette di inferire qualcosa in generale su di una categoria concreta se esiste un'aggiunzione free-forgetful?}
+
+Come sono fatti i prodotti, se ci sono?
+
+\pol[inline]{$\Sets$ è una sottocategoria piena di $\cate{Pos}$: i poset con relazioni vuote. Questo mi fa sospettare che ogni prodotto in $\cate{Pos}$ sia un prodotto di $\Sets$ dotato di una relazione adeguata a garantire monotonicità al $\Sets$-prodotto cartesiano di morfismi monotoni. So che funziona, ma non so dire se sia un caso.}
+\hypertarget{limit-creation}{}
+\fou[inline]{Non \`e un caso: esiste la nozione di \emph{creare i limiti} per un funtore $U\colon \C\to Set$, la definizione precisa \`e su \textbf{CWM.V.1}. Siccome la definizione di creazione di limiti \`e sempre piuttosto dolorosa, provo a spiegarla in altri termini.  Idealmente significa che esiste un modo canonico di dare a un universale in $\Sets$ una $\C$-struttura che lo renda un universale in $\C$; in altre parole si tratta di un modo formale di dire che ``il prodotto di gruppi \`e il prodotto cartesiano dotato delle operazioni pointwise'', oppure che ``lo spazio topologico prodotto \`e il prodotto cartesiano con la massima topologia che rende continue le proiezioni insiemistiche''. Solitamente funtori monadici creano i limiti (Prop. 1 p. 178 di \emph{Sheaves in Geometry and Logic}, ma si dimostra anche a mano). Allora siccome i forgetful $U\colon \C\to Set$ da categorie algebriche sono tutti monadici (\textbf{CWM.VI.8}, Thm. 1)\dots
+
+Sono contento tu l'abbia notato. Non \`e una cosa banale (per apprezzarla ci ho messo quasi tutta la tesi triennale).}
+
+Dati due poset $A,B$ definiamo il loro prodotto come il prodotto cartesiano dei set soggiacenti, dotato della relazione
+\[(a,b)\leq(a',b')\Leftrightarrow(a\leq a'\wedge b\leq b')\]
+
+\pol[inline]{Questo prodotto quindi eredita dalla congiunzione logica l'associatività. Ci piace.}
+
+Con l'oggetto terminale di $\Sets$, il singoletto $1$, si costruisce facilmente quello di $\cate{Pos}$, ovvero $1$ dotato della relazione $1^2\cong 1$ \sout{(l'unica altra possibile è $\emptyset$ ma impedisce all'oggetto di essere terminale: non esistono morfismi da una relazione non vuota a quella vuota)}.\fou[inline]{Soprattutto perch\'e la relazione vuota non \`e un ordine parziale!\pol[inline]{Giusto. La riflessività fa in modo che il vuoto sia l'unico set ad ammettere il vuoto come relazione.}} È immediato che si tratta dell'identità del prodotto, poiché trivializza la condizione logica corrispondente alla sua componente nella disgiunzione della definizione di prodotto.
+
+\pol[inline]{A margine noto che l'oggetto iniziale è $\emptyset$ dotato della relazione $\emptyset^2\cong\emptyset$. Non esiste oggetto zero poiché non esistono morfismi dall'oggetto terminale all'oggetto terminale.}
+
+Il corretto prodotto di morfismi è esattamente quello di $\Sets$. Infatti l'ordine definito sul prodotto garantisce che il prodotto di funzioni monotone sia monotono, essendo
+\[(f\times g)(a,b)\leq(f\times g)(a',b')\Leftrightarrow(f(a)\leq f(a')\wedge g(b)\leq g(b'))\]
+
+Notiamo ora che la monotonia di un morfismo $f:A\times B\rightarrow C$ implica $\forall b\in B$ che
+\[a\leq a' \Rightarrow f(a,b)\leq f(a',b)\]
+e quindi l'isomorfismo di currying induce grazie all'ordine sui prodotti l'ordine puntuale sugli hom-set. Precisamente, se $f,g\in B^A$
+\[f\leq g \Leftrightarrow f(a)\leq g(a) \quad \forall a\]
+Ciò significa che abbiamo anche gli esponenziali e la categoria è cartesiana chiusa.
+
+Cristallizziamo le idee. Fissato un oggetto $B$ di $\cate{Pos}$ abbiamo l'aggiunzione $(-\times B)\dashv(-^B)$, i cui funtori danno prodotti ed esponenziali di $\Sets$ dotati delle relazioni viste sopra. Mostriamolo presentando esplicitamente le bijezioni naturali tra gli hom-set.
+
+Per ogni coppia di oggetti $A$ e $C$ definiamo
+\[
+\xymatrix{ {\rm hom}(A\times B,C)
+\ar[rr]^{\gamma_{A,C}} &&
+{\rm hom}(A,C^B)}
+\]
+e la sua inversa come
+\[
+(\gamma_{A,C}f)(a)(b):=f(a,b)
+\qquad
+(\gamma_{A,C}^{-1}g)(a,b):=g(a)(b)
+\]
+per ogni $(a,b)\in A\times B$. Si tratta del currying di $\Sets$ ed ogni verifica sulla bijettività è immediata. Rimane da vedere se è naturale. Dati tre morfismi $f:Z\rightarrow A$, $g:C\rightarrow X$ ed $h\in{\rm hom}(A\times B,C)$, per ogni $z\in Z$ e $b\in B$ si ha
+\[
+\left[ {\rm hom}(f,g^B) \circ \gamma_{A,C} (h) \right] (z)(b) = 
+g\left(\gamma_{A,C}h(f(z))(b)\right) = 
+g\circ h(f(z),b)
+\]
+\[
+\left[ \gamma_{Z,X}\circ{\rm hom}(f\times B,g) (h) \right] (z)(b) =
+\gamma_{Z,X} \left[ g\circ h\circ(f\times{\rm id}_B) \right] (z)(b)=
+g\circ h(f(z),b)
+\]
+e così concludiamo.
+\pol[inline]{Ew. Vabè.}
+
+\subsection*{Spazi metrici limitati e funzioni lipschitziane}
+
+La categoria in esame ha come oggetti gli spazi metrici limitati, ovvero le coppie $(X,d)$ dove $X$ sia un set e $d$ una metrica su di esso che abbia la proprietà
+\[\sup_{x,x'\in X}d(x,x')<\infty\]
+I morfismi sono le funzoni lipshitziane. Cioè, un morfismo $f:(X,d_X)\rightarrow(Y,d_Y)$ è una funzione tra i set soggiacenti per cui esiste una costante non negativa $K_f$ tale che per ogni coppia di punti $(x,x')$ del dominio vale la seguente condizione metrica:
+\[d_Y(f(x),f(x'))\leq K_fd_X(x,x')\]
+Le verifiche degli assiomi di categoria sono straightforward.
+
+\pol[inline]{Un fatto grazioso è che si possa scegliere $K_{f\circ g}=K_fK_g$. Cioè, l'assegnazione della costante di Lipschitz minima è funtoriale!}
+\hypertarget{lipschitz-functor}{}
+\fou[inline]{Interessante, non ci avevo mai pensato; che interpretazione ha la costante di Lipschitz in termini di spazi metrici come categorie arricchite?}
+Procediamo a verificare se è cartesiana chiusa.
+
+\pol[inline]{Nuovamente, non faccio altro che pigliare quello che funzionava in $\Sets$ e dotarlo della giusta struttura aggiuntiva. Possibile che sia un caso? Di nuovo, $\Sets$ è una sottogategoria piena, data dagli spazi metrici con metriche costanti nulle, tra cui tutte le funzioni sono lipschitziane.}
+
+L'oggetto terminale è il set di cardinalità uno, dotato dell'unica metrica possibile.
+
+Ingenuamente, decido che il prodotto tra spazi metrici sia il prodotto cartesiano dei set soggiacenti dotato della giusta $p$-metrica. L'oggetto terminale è l'unità indipendentemente dalla scelta di $1\leq p\leq \infty$.
+
+\pol[inline]
+{Capisco che $p=\infty$ sia la scelta più semplice, ma non ho un motivo concreto perpreferirla. }
+\fou[inline]
+{Attento che ci sono spazi metrici la cui metrica non \`e una $p$-norma. \`E pi\`u semplice di quel che pensi mettere una metrica su $X\times Y$. E c'\`e anche un modo di metterla su $\prod_{i=1}^\infty X_i$\dots}
+\pol[inline]
+{Certo, ma il modo in cui definisco la metrica sul prodotto mica vincola l'esistenza di oggetti con metriche differenti. O no? Comunque, ho intuito come deve andare a finire. È che per questo esercizio invece che costruire prodotti ed esponenziali e mostrare l'aggiunzione voglio provare a capire come gli esponenziali inducono i prodotti, supponendo che l'aggiunzione esista. For fun. Ed anche perché presumo ci saranno situazioni in cui è più semplice definire la struttura pointwise sugli esponenziali ed indurre quella sui prodotti, invece che presentarle entrambe e sperare che combacino.}
+\fou[inline]
+{Allora ricapitolando: dati $(X,d_X)$ e $(Y, d_Y)$ definiamo
+\[
+d_{X\times Y}((x,y), (x', y')) = N(d_X(x,x'), d_Y(y,y'))
+\]
+dove $N\colon \mathbf{R}\times\mathbf{R}\to \mathbf{R}$ \`e una qualsiasi metrica che induca la topologia euclidea su $\mathbf R$. Il problema di stabilire quale di queste scelte sia canonica probabilmente \`e mal posto, perch\'e ci sar\`a in ogni caso un'unica isometria tra due scelte $N$ ed $N'$.}
+\pol[inline]
+{Ok. But let me take a detour.}
+
+
+
+
+\subsection*{Pointwise to componentwise - and back!}
+
+Immaginiamo di avere una categoria concreta e cartesiana chiusa i cui morfismi debbano rispettare una certa proprietà $\mathcal G$, nel senso che
+\[f\in[A,B] \quad\Leftrightarrow\quad {\mathcal G}(f)\]
+
+L'isomorfismo naturale dell'aggiunzione altri non è che il currying:
+
+\[
+\left[ A\times B, C \right]
+\ni f \mapsto \hat{f} \in
+\left[ A, C^B \right]
+\]
+
+Immaginiamo ora che sugli esponenziali la proprietà morfismo sia definita puntualmente, ovvero
+
+\[
+{\mathcal G}(\hat{f})
+\quad\Leftrightarrow\quad
+(\forall b\in B){\mathcal G}(\hat{f}(-)(b))
+\]
+
+Segue che
+\begin{align*}
+\hat{f} \in \left[ A, C^B \right]
+& \quad\Leftrightarrow\quad
+{\mathcal G}(\hat{f}) \bigwedge (\forall a\in A){\mathcal G}(\hat{f}(a)) \\
+& \quad\Leftrightarrow\quad
+(\forall b\in B){\mathcal G}(\hat{f}(-)(b)) \bigwedge (\forall a\in A){\mathcal G}(\hat{f}(a)(-))
+\end{align*}
+ovvero
+\begin{align*}
+f \in \left[ A \times B, C \right]
+& \quad\Leftrightarrow\quad
+(\forall b\in B){\mathcal G}(f(-,b)) \bigwedge (\forall a\in A){\mathcal G}(f(a,-))
+\end{align*}
+
+{\bf Morale:} {\it pointwise} sugli esponenziali corrisponde naturalmente a {\it componentwise} sui prodotti. Ciò permette di indurre anche le strutture degli oggetti da un lato all'altro dell'aggiunzione - precisamente, usando l'ultimo {\it ovvero}.
+\hypertarget{componentwise-pointwise}{}
+\fou[inline]{Tutto ci\`o \`e molto bello e non ci avevo mai pensato; non so se la propriet`a abbia un nome; non credo non sia nota. Posti dove cercherei:
+\begin{itemize}
+\item Lambek, Joachim, and Philip J. Scott, eds. \emph{Introduction to higher-order categorical logic}. Vol. 7. Cambridge University Press, 1988.
+\item Barr, Michael, and Charles Wells. \emph{Toposes, triples and theories}. Vol. 278. New York: Springer-Verlag, 1985.
+\end{itemize}
+Forse c'entra l'aggiunzione $\exists\dashv \forall$? Ovviamente la parte successiva la seguo, ma l'orgetta di quantificatori rende tutto abbastanza illeggibile.}
+
+
+
+
+\subsection*{Ordini parziali e funzioni monotone - REDUX}
+
+Facciamo un esperimento con $\cate{Pos}$. La condizione di morfismo è la monotonicità, e per parlarne bastano le strutture di poset su domino e codominio (ovviamente, visto che si tratta esclusivamente di rispettarle):
+\[
+f \in [A,B]
+\quad\Leftrightarrow\quad
+{\mathcal G}(f)
+\quad\Leftrightarrow\quad
+(\forall a,a' \in A) (a \leq a' \Rightarrow f(a) \leq f(a'))
+\]
+
+La proprietà di morfismo definita puntualmente per i morfismi verso gli esponenziali induce anche la struttura di poset su questi ultimi. Infatti se $\hat{f}\in\left[A,C^B\right]$, usando le strutture di poset su $A$, $C$ ed almeno formalmente quella ancora ignota su $C^B$, abbiamo che
+\begin{align*}
+(\forall b\in B){\mathcal G}(\hat{f}(-)(b))
+& \quad\Leftrightarrow\quad
+(\forall b\in B)(\forall a,a' \in A) (a \leq a' \Rightarrow \hat{f}(a)(b) \leq \hat{f}(a')(b)) \\
+{\mathcal G}(\hat{f})
+& \quad\Leftrightarrow\quad
+(\forall a,a' \in A) (a \leq a' \Rightarrow \hat{f}(a) \leq \hat{f}(a'))
+\end{align*}
+e quindi ${\mathcal G}(\hat{f})\Leftrightarrow(\forall b\in B){\mathcal G}(\hat{f}(-)(b))$ implica che $\forall a,a' \in A$
+\[
+\hat{f}(a) \leq \hat{f}(a')
+\quad\Leftrightarrow\quad
+(\forall b\in B)(\hat{f}(a)(b) \leq \hat{f}(a')(b))
+\]
+proprio come ci aspetteremmo.
+
+Per quanto detto in generale sappiamo già che una funzione il cui dominio è un prodotto è monotona se e solo se lo è ogni sua componente, ma qual è la struttura di poset che questa condizione induce sui prodotti? Essa è la congiunzione di
+\[
+(\forall a \in A)(\forall b,b' \in B)(b \leq b' \Rightarrow f(a,b) \leq f(a,b'))
+\]
+e
+\[
+(\forall b \in B)(\forall a,a' \in A)(a \leq a' \Rightarrow f(a,b) \leq f(a',b))
+\]
+ma ciò implica che scelti comunque $a,a' \in A$ e $b,b' \in B$ valga
+\[
+a \leq a' \wedge b \leq b'
+\quad\Rightarrow\quad
+f(a,b) \leq f(a',b')
+\]
+che, valutata sull'identità restituisce
+\[
+a \leq a' \wedge b \leq b'
+\quad\Rightarrow\quad
+(a,b) \leq (a',b')
+\]
+La monotonicità delle proiezioni produce l'implicazione inversa e così l'ordine sui prodotti è completamente fissato ed è quello che ci aspetteremmo.
+
+
+
+
+\subsection*{Spazi metrici limitati e funzioni lipschitziane - REPRISE}
+
+%Let's kick it. Non sto a ripeterlo in ogni proposizione ma le costanti di Lipschitz intendo che siano tutte numeri reali non negativi. 
+La condizione di morfismo dunque sarà
+\[
+f \in [A,B]
+\quad\Leftrightarrow\quad
+{\mathcal G}(f)
+\quad\Leftrightarrow\quad
+(\exists K_f)(\forall a,a' \in A)(d_B(f(a),f(a')) \leq K d_A(a,a'))
+\]
+
+La condizione di {\it puntualizzabilità} \pol{La cosa avrà pure un nome vero, mi sa.} della proprietà di morfismo è che, per ogni $\hat{f}\in\left[A,C^B\right]$ valga
+\[
+(\forall b \in B)
+(\exists K_{\hat{f},b})
+(\forall a,a' \in A)
+(d_C(\hat{f}(a)(b),\hat{f}(a')(b)) \leq K_{\hat{f},b} d_A(a,a'))
+\]
+se e soltanto se vale
+\[
+(\exists K_{\hat{f}})
+(\forall a,a' \in A)
+(d_{\left[B,C\right]}(\hat{f}(a),\hat{f}(a')) \leq K_{\hat{f}} d_A(a,a'))
+\]
+
+\hypertarget{p2c-lipshitz}{}
+\pol[inline]{Probabilmente stando a districare i quantificatori uno trova la famiglia di metriche ammissibili. Siccome è una rogna, mi accontento di tagliare corto.}
+
+\fou[inline]{S\`i, appunto; una possibile sbavatura di cui ti si potrebbe accusare \`e che questo metodo non definisce univocamente \emph{cosa} dovrebbe essere $d_{[B,C]}$: d'altra parte l'idea intuitiva \`e che la condizione metrica sia realizzata per $d_{[B,C]}(f,g):=\sup_{b}d_C(fb, gb)$; probabilmente uno determina anche questo smanettando coi quantificatori.  Resta inteso che uno dovrebbe verificare che $K_{\hat f} = \sup\dots$}

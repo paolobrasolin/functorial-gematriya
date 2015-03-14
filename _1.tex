@@ -1,0 +1,82 @@
+\begin{MyExercise}
+Ogni categoria cartesiana chiusa con un oggetto zero è banale (corollario: $\Sets$ non ha un oggetto zero); resta vero quando la categoria è solo cartesiana?
+\end{MyExercise}
+
+\paragraph*{Riflessione}
+
+Una categoria è {\em chiusa} se ogni collezione di frecce tra una coppia di oggetti è un oggetto.
+Concretamente, si tratta di una categoria dotata di un funtore {\em hom interno} che individua tali hom-oggetti e di un oggetto {\em identità} per tale operazione. È necessario che certi assiomi vengano rispettati affinché tutto funzioni bene - ovvero mimando le proprietà che hanno gli esponenziali di insiemi.
+
+Una categoria è {\em monoidale} se possiede una nozione di prodotto binario di oggetti il cui risultato sia un oggetto.
+Concretamente, si tratta di una categoria dotata di un funtore {\em prodotto} e di un oggetto {\em identità} per tale operazione. È necessario che certi assiomi vengano rispettati affinché tutto funzioni bene, ovvero esattamente come se fossimo in un monoide.
+
+Una categoria è {\em monoidale chiusa} se è monoidale e chiusa in modo compatibile.
+Rozzamente, significa che l'esponenziazione ed il prodotto per un medesimo oggetto devono formare un'aggiunzione. Le bijezioni naturali coinvolte sono in effetti delle normali operazioni di currying, almeno finché si parla di categorie monoidali simmetriche: scelgo di ignorare la complessità introdotta dai vari gradi di commutatività possibili per il prodotto monoidale.
+
+Come prima approssimazione posso pensare che il collegamento tra le proprietà delle categorie e le operazioni cruciali che permettono internamente sia
+\begin{align*}
+\text{chiusa}          & \sim \text{esponenziale}\\
+\text{monoidale}       & \sim \text{prodotto}\\
+\text{monoidale chiusa}& \sim \text{currying}
+\end{align*}
+
+{\df Una categoria {\em cartesiana (chiusa)} è una categoria monoidale (chiusa) il cui prodotto sia quello cartesiano. È pertanto necessariamente simmetrica.}
+
+
+
+
+\paragraph*{Risposta}
+
+Questo non è esattamente quello che chiedevi, ma è quanto più sono riuscito ad avvicinarmi.
+
+\hypertarget{terminal-identity}{}
+{\prop \sout{Ogni categoria monoidale simmetrica chiusa con un oggetto zero è equivalente a quella banale.}\pol{Falso!}}
+{\proof
+Siano $\C$ una tale categoria, $1$ l'unità, $\lambda$ l'unitore sinistro e $0$ un oggetto zero. Dati comunque due oggetti $A$ e $B$ si ha
+\[ {\rm hom}(A,B) \cong {\rm hom}(1 \otimes A,B) \cong {\rm hom}(1,\left[A,B\right]) \cong {\rm hom}(0,\left[A,B\right]) \cong  \{\star\} \]
+Il primo isomorfismo è ${\rm hom}(\lambda_A,1_B)$, mentre il secondo esiste per aggiunzione. Il terzo (una precomposizione nella parte controvariante dell'hom-funtore) esiste perché $1$ e $0$ sono isomorfi essendo entrambi terminali. L'ultimo isomorfismo esiste perché $0$ è iniziale.
+
+Ogni funtore che abbia come codominio la categoria banale è trivilamente denso. L'unico funtore dal $\C$ alla categoria banale è pienamente fedele essendo gli hom-set di $\C$ dei singoletti. Dunque $\C$ è equivalente alla categoria banale.
+\qed}
+
+\pol[inline]{Nella dimostrazione uso il fatto che l'unità sia isomorfa all'oggetto terminale, generalmente falso. Comunque, è vero se la categoria è cartesiana quindi in quel caso quanto dico funziona.}
+
+
+In $\C$ tra ogni coppia ordinata di oggetti esiste un unico morfismo che dev'essere l'identità se gli oggetti non sono distinti. Allora per gli assiomi di categoria ogni composizione di morfismi con dominio e codominio uguali deve essere un'identità. Segue che tutti i morfismi che non sono identità sono isomorfismi, ovvero tutti gli oggetti della categoria sono isomorfi. Potevo sfruttare questo fatto per mostrare la densità di un funtore nella direzione opposta e concludere analogamente.
+
+\fou[inline]{si, l'idea \`e esattamente questa:
+$$
+0\stackrel{(\star)}{\cong} A\times 0\cong A\times 1\cong A
+$$
+sicch\'e ogni oggetto \`e isomorfo allo zero, sicch\'e ogni coppia di oggetti \`e vicendevolmente isomorfa. Il punto \`e che l'isomorfismo $(\star)$ vale di sicuro quando $-\times A$ commuta coi colimiti.
+\pol[inline]{Che è proprio quando è un aggiunto sinistro - ovvero quando la categoria è chiusa. Got it.}
+}
+
+È facile vedere che in effetti ogni categoria \underline{monoidale} simmetrica \fou{Forse qui intendi cartesiana.} \pol{No, intendevo proprio scrivere questo.} chiusa ha un oggetto zero se e soltanto se è equivalente alla categoria banale.
+
+\fou[inline]{Non so se questo sia vero, dovrei pensarci. Se una categoria \`e equivalente alla terminale, certamente e' cartesiana (\`e cocompleta), e ha uno zero (lo si dimostra) ma \`e anche chiusa?
+
+\pol[inline]{Non è quello che intendevo dire. Più chiaramente:
+\[\text{IS MON-SYM CLOSED}\Rightarrow(\text{HAS ZERO}\Leftrightarrow\text{IS TRIVIAL})\]
+Se il prodotto è quello cartesiano, diventa l'affermazione che fai qui sotto.
+
+\fou[inline]{No, questo \`e falso, per come lo enunci. Alcuni controesempi sono: gli insiemi e gli spazi puntati con lo smash product (googla), i moduli su un anello $R$, le categorie di fasci di moduli su uno spazio decente\dots Avevo posizionato male il sse. Potrebbe interessarti la definizione di \href{http://ncatlab.org/nlab/show/AT+category}{AT-categoria}, che sostanzialmente assiomatizza il fatto che cartesiane chiuse molto buone (i (pre)topos) e abeliane molto buone (moduli su un anello) sono classi ``ortogonali'' di categorie.}
+}
+}
+
+\fou[inline]{Il punto dell'esercizio \`e proprio che una categoria cartesiana con un oggetto zero (ce ne sono molte: gruppi abeliani, moduli su un anello, tutte le categorie abeliane, etc.) non pu\`o essere chiusa senza diventare equivalente alla terminale. E allora non c'\`e un hom interno rispetto al prodotto. Soprattutto perch\'e il prodotto e il coprodotto sono isomorfi, in molti contesti dove c'\`e uno zero.}
+
+{\cor {\Sets} non ha un oggetto zero. }
+{\proof {\Sets} è una categoria cartesiana chiusa, quindi è una categoria monoidale simmetrica chiusa. Per la proposizione precedente se avesse un oggetto zero essa sarebbe equivalente alla categoria banale e dunque tutti i suoi oggetti sarebbero tra loro isomorfi. $\Sets$ contiene l'insieme vuoto ed il singoletto, non isomorfi, quindi non contiene un oggetto zero. \qed}
+
+{\prop Il fatto che una categoria monoidale simmetrica abbia un oggetto zero non implica che sia equivalente a quella banale.}
+{\proof Basta presentare un controesempio: la categoria {\bf Ab}. Col prodotto tensore di gruppi è monoidale simmetrica, l'oggetto zero è il gruppo triviale. È ovviamente non equivalente alla categoria triviale. \qed}
+\fou[inline]{S\`i! Ovviamente ci sono molti altri controesempi. Quello che impedisce alla categoria $\bf Ab$ (come alle altre abeliane) di essere banale pur avendo un oggetto zero ed essendo cartesiana \`e che assieme alla presenza di uno zero (iniziale = terminale) ci sono i biprodotti (prodotto = coprodotto)}
+
+
+\subsection*{Morale}
+
+Ho una categoria monoidale simmetrica. Se è chiusa, un oggetto zero la banalizza. In generale, no. Il fatto che il prodotto sia quello cartesiano c'entra? Nella prima proposizione no. Nella seconda, forse, ma ci devo ancora pensare.
+\fou[inline]{La risposta alla seconda domanda \`e che essere chiuse \`e essenziale: ci sono un sacco di categorie che sono solo cartesiane, e hanno uno zero senza essere banali. Il trucco \`e che in molti tra questi controesempi il prodotto non \`e solo un prodotto; \`e anche un coprodotto perch\`e le categorie sono additive.}
+
+\fou[inline]{Sulle vecchie domande/risposte si pu\`o sempre tornare; per il momento aggiungo la seconda domanda.}

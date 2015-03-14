@@ -1,0 +1,45 @@
+\begin{MyExercise} Sia $X$ un insieme, $\mathcal PX$ il suo insieme delle parti guardato come categoria; mostrare che $\mathcal PX$ \`e cartesiana chiusa. Sia ora $(X, \tau)$ uno spazio topologico; mostrare che il reticolo degli aperti di $X$, $\mathbf{Op}(X)$, parzialmente ordinato dall'inclusione, \`e anche lei una categoria cartesiana chiusa.
+\end{MyExercise}
+\fou[inline]{Le idee ci sono tutte, ma un paio di sviste:}
+Dato un set $X$ è possibile definire $\mathcal PX$, la categoria posetale (i.e. gli homset contengono al più un morfismo) i cui oggetti siano subset di $X$ e tale che
+\[ \exists A \to B \Leftrightarrow A \subseteq B \]
+
+È immediato che l'oggetto iniziale è $\emptyset$ e quello terminale è $X$. Esistono vacuamente i (co)equalizzatori, dati dalle identità. Per questa ragione pullback e pushout coincidono rispettivamente con prodotti e coprodotti. Per vedere se esistono interpretiamo gli usuali diagrammi:
+\[\xymatrix{
+Z \ar[d] \ar[r] \ar@{.>}[dr]	& B \\
+A								& A \cap B \ar[l] \ar[u]
+}\qquad\xymatrix{
+A \cup B \ar@{.>}[dr]	& B \ar[l] \ar[d] \\
+A \ar[u] \ar[r]			& Z
+}\]
+Interpretando le frecce come inclusioni si spiegano i simboli. Il prodotto è il set massimale che sta in entrambi i fattori: l'intersezione. Il coprodotto è il set minimale che che li contiene entrambi: l'unione.
+
+Dunque $\mathcal PX$ è una categoria bicompleta.
+\fou[inline]{\"Otcho. Cio\`e, s\`i, \`e vero: ma tu hai mostrato che esistono solo limiti e colimiti \emph{finiti} con quello che hai detto. In un reticolo prodotti = meet, e coprodotti = join; e un reticolo \`e \emph{completo} quando ammette join e meet arbitrari (visto che co/eq ci sono gratis la co/completezza \`e detectata dai solo co/prodotti). Allora $\mathcal P(X)$ ha meet e join arbitrari: $\bigcup X_i, \bigcap X_i$.}
+\pol[inline]{Ok. Avevo la sensazione che parlando di (co)completezza di categorie si intendesse implicitamente la finitezza - per questo non avevo specificato. Registrato. }
+Definiamo il complemento di $A$ come l'oggetto $A^\text{c}$ massimale per cui $A\cap A^\text{c}$ sia iniziale. 
+\fou[inline]{Yep, e allora diciamolo bene:
+\[
+A^\text{c} = \bigcup \{ W\mid W\cap A=\varnothing\}
+\]}
+Ora possiamo occuparci di calcolare la parte destra dell'aggiunzione
+\[\mathcal PX(A\cap B,C)\cong\mathcal PX(A,[B,C])\]
+ovvero risolvere in $[B,-]$ la condizione
+\[A\cap B\subseteq C \Leftrightarrow A\subseteq[B,C]\]
+Disegnando un diagramma di Venn si vede subito che dev'essere
+\[[B,-]=B^\text{c}\cup-\]
+\fou[inline]{Da cui $A^\text{c} = [A, \varnothing]$, e mettendo insieme la caratterizzazione precedente di $A^\text{c}$ si ha che $[A,B]=$\dots}
+\pol[inline]{Modificando la precedente in $A^\text{c} = \bigcup \{ W\mid W\cap A\subseteq\varnothing\}$ intuisco che $[A,B]= \bigcup \{ W\mid W\cap A\subseteq B\}$. A posteriori in effetti ha perfettamente senso; se non ricordo male in logica dovrebbe rappresentare la proposizione massimale tale che $A$ implica $B$. Makes sense.}
+L'unità è pertanto il terminale $X$.
+
+Abbiamo concluso la descrizione della categoria cartesiana chiusa
+\[(\mathcal PX,-\cap-,-^\text{c}\cup-,X)\]
+Notiamo che è stata indispensabile la presenza dei coprodotti per costruire l'aggiunzione.
+
+\pol[inline]{By the way: trovo la mia caratterizzazione oscena. Mi riservo pertanto di rifarla. Nel prossimo esercizio, però, visto che qui non devo farci altro.}
+
+Occupiamoci ora del reticolo degli aperti di uno spazio topologico. È immediato pensarlo come categoria posetale i cui oggetti siano gli aperti ed i cui unici morfismi siano le inclusioni (non strette, visto che servono le identità). La situazione è molto simile a prima. La categoria è posetale, quindi ci sono i (co)equalizzatori. L'interpretazione dei diagrammi di (co)prodotto è la medesima: il prodotto è l'intersezione ed il coprodotto è l'unione. Ricordando che una topologia dev'essere chiusa per unioni arbitrarie ed intersezioni finite abbiamo immediatamente che la categoria è finitamente completa e cocompleta. Anche l'aggiunto che dà la chiusura è formalmente il medesimo e per scriverlo abbiamo bisogno esattamente di un'unione arbitraria ed un'intersezione finita:
+\[[B,C]= \bigcup \{ X\mid X\cap B\subseteq C\}\]
+In parole, l'aggiunzione dice che l'intersezione di $A$ e $B$ sta in $C$ se e solo se $A$ sta nel più grande aperto la cui intersezione con $B$ stia in $C$.
+
+\pol[inline]{Col reticolo degli aperti uno deve stare attento: un'intersezione arbitraria può compromettere la proprietà di essere aperto. Col reticolo delle parti invece la cosa è passata quasi sotto silenzio: nessuna operazione di unione o intersezione può compromettere la proprietà di essere sottinsieme grazie al fatto che l'insieme delle parti è per definizione completo. Comunque, al netto di tutto finora pare che sia necessaria chiusura per join arbitrari e meet finiti affinché la categoria costruita su un reticolo sia cartesiana chiusa.}

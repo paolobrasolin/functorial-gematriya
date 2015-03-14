@@ -1,0 +1,31 @@
+Lo spazio etal\'e di un fascio.
+
+L'equivalenza $\cate{Sh}(\underline X)\cong \Sets_{/X}$, e la presenza di un funtore $\cate{Top}_{/X}\to \cate{Sh}(X)$ suggerisce che si possa pensare un fascio su uno spazio $X$ come una sorta di ``spazio'' che lo ``riveste''.
+
+Questo \`e vero. Si fa cos\`i.
+\begin{MyExercise}
+Mostrare che esiste una aggiunzione 
+\[
+\textsf{st}_x\dashv \textsf{sky}_x\colon \cate{PSh}(X) \leftrightarrows \Sets
+\]
+dove $\textsf{st}_x\colon \cate{PSh}(X)\to \Sets$ \`e il funtore che manda $F$ in
+\[
+\varinjlim_{U\supseteq \{x\}} F(U)
+\]
+e $\textsf{sky}_x$ \`e il funtore che manda un insieme $A$ nel prefascio
+\[
+\textsf{sky}_x(A) \colon U\mapsto
+\begin{cases}
+A & \text{ se } x\in U\\
+* & \text{ altrimenti.}
+\end{cases} 
+\]
+\end{MyExercise}
+$\textsf{st}_x(F)$ \`e la \emph{spiga} del prefascio $F$.
+\begin{MyExercise}
+Mostrare che $\textsf{sky}_x(A)$ \`e un fascio, sicch\'e l'aggiunzione si restringe a $\cate{Sh}(X)$; $\textsf{st}_x(F)=F_x$ \`e la spiga del fascio $F$. 
+\end{MyExercise}
+Le propriet\`a di un fascio sono altamente determinate dalle propriet\`a congiunte dell'insieme delle sue spighe:
+\begin{MyExercise}
+Mostrare che un morfismo $\eta\colon F\Rightarrow G$ tra fasci su $X$ \`e un iso/mono/epi se e solo se lo \`e ciascun $\textsf{st}_x\eta\colon F_x\to G_x$.
+\end{MyExercise}

@@ -1,0 +1,191 @@
+\begin{MyExercise} 
+\begin{itemize}
+\item ``$X\mapsto \cate{Sh}(X)$ \`e esso stesso un fascio'', ovvero se $U\subseteq X$ esiste una restrizione $\boldsymbol\rho_U\colon \cate{Sh}(X)\to \cate{Sh}(U)$, e scriviamo $\boldsymbol\rho_U(F)=F|_U$.
+\item Se $X=\bigcup U_i$ \`e un ricoprimento aperto di uno spazio $X$, e viene dato un fascio $F_i$ su ciascun $U_i$, tale che
+\[
+F_i|_{U_i\cap U_j} = F_j|_{U_i\cap U_j}
+\]
+allora esiste un unico fascio $F$ su $X$, a meno di isomorfismo, tale che $F|_{U_i} = F_i$.
+\item Se $\mathfrak B(X)$ \`e una base di $\cate{Op}(X)$, allora ogni fascio su $\mathfrak B(X)$ ammette un'unica estensione a un fascio su tutto $X$. Hint: questo \`e un risultato di densit\`a: 
+\[
+\xymatrix{
+\mathfrak{B}(X) \ar[r]^F\ar[d]_\iota & \Sets\\
+\cate{Op}(X)\ar@{.>}[ur]_{\text{Lan}_\iota F}
+}
+\]
+e il risultato suona come $\text{Lan}_\iota\colon \Sets^{\mathfrak B(X)}\to \Sets^{\cate{Op}(X)}$ induce un'equcat tra le rispettive categorie dei fasci.
+\end{itemize}
+\end{MyExercise}
+
+\subsubsection*{Esperimento-time!}
+
+Prendo un mono in $\Sets$:
+\[i_{UX}\colon U\hookrightarrow X\]
+Se vado in $\cate{Top}$ munendo $X$ della topologia $\tau$ allora posso indurre la topologia sottospazio su $U$:
+\[ \tau_U = \{ U\cap V \vert V\in\tau \} \]
+Se $U\in\tau$ succede una cosa cruciale grazie alla chiusura ed è giustificata una nuova notazione:
+\[ \tau\vert_U := \tau_U \subseteq \tau \]
+
+Ora considero il reticolo $\cate{Op}(X)$, intendendo $X$ munito della topologia $\tau$.
+La definizione usata ha una conseguenza notevole: presi comunque $U,V\in\tau$,
+\[
+U\subseteq V \Rightarrow \tau\vert_U\subseteq\tau\vert_V
+\]
+Sono in atto varie corrispondenze funtoriali, si intuisce.
+
+Iniziamo a srotolare la matassa.
+Le topologie sono chiuse per intersezioni finite, quindi $\cate{Op}(X)$ ha i pullback:
+\[\xymatrix{
+U\cap V \ar[d] \ar[r] & U \ar[d] \\
+V \ar[r] & X
+}\]
+L'operazione di indurre sugli aperti la topologia sottospazio è dunque catturata dal funtore pullback:
+\[ i^\star_{UX}\colon\cate{Op}((X,\tau))\to\cate{Op}((U,\tau\vert_U)) \]
+Grazie al gluing lemma esso gode della proprietà equivalente a $U\subseteq V \Rightarrow \tau\vert_U\subseteq\tau\vert_V$, ovvero
+\[ i^\star_{UV}i^\star_{VX} = i^\star_{UX}\]
+
+È doveroso a questo punto definire il funtore controvariante $i^\star_X$ su $\cate{Op}(X)$ come
+\[
+i^\star_X\colon
+\left\{\begin{array}{rcl}
+U &\mapsto& i^\star_{UX} \\
+U\subseteq V &\mapsto& i^\star_{UV}
+\end{array}\right.
+\]
+Esso ricorda molto un fascio.
+Le condizioni di compatibilità ed esistenza univoca degli incollamenti dovrebbero essere
+\[
+i^\star_{(U\cap V)V}i^\star_{VX} = i^\star_{(U\cap V)X} = i^\star_{(U\cap V)U}i^\star_{UX}
+\qquad
+i^\star_{UV}i^\star_{VX} = i^\star_{UX}
+\]
+
+\pol[inline]{Uhm. Ci sono quasi.
+Forse però non è il modo migliore di vederlo.
+Ed in effetti stavo solo giocando - non avevo un piano.}
+
+
+
+
+\subsubsection*{Parte uno}
+
+Fisso uno spazio topologico $(X,\tau)$.
+Dato $U\in\tau$, l'inclusione di set induce la topologia sottospazio $\tau\vert_U$ su $U$ ed una mappa continua ed aperta:
+\[
+i_U\colon U\to X
+\qquad\leadsto\qquad
+i_U\colon(U,\tau\vert_U)\to(X,\tau)
+\]
+Allora posso definire un funtore agente come l'identità e dichiarare che la restrizione di fasci cercata è la precomposizione:
+\[
+I_U\colon\cate{Op}(U,\tau\vert_U)\to\cate{Op}(X,\tau) 
+\qquad\leadsto\qquad
+\boldsymbol\rho_U = I_U^\star
+\]
+È immediato che la restrizione funzioni: i ricoprimenti di un aperto nella topologia sottospazio sono esattamente i ricoprimenti del medesimo aperto nella topologia iniziale, quindi le condizioni di fascio reggono a fortiori.
+
+
+
+
+\subsubsection*{Parte due}
+
+Proposta: sfruttare il prodotto di funtori che ho a disposizione in questa situazione e definire
+\[ F=\coprod_{i\in I}F_i(I_i\cap-) \]
+Esso è un fascio.
+Rispetta a vista la condizione sulle restrizioni.
+L'esistenza dell'isomorfismo con gli equalizzatori è garantita componente per componente da quella degli $F_i$ grazie al fatto che il prodotto di funtori è definito puntualmente.
+Assieme alla compatibilità dei fasci sulle intersezioni, ciò garantisce che è definito univocamente, a meno di isomorfismo.
+
+\pol[inline]{Questa soluzione non mi piace.
+Oltretutto, {\it credo} che funzioni, ma mi sento confuso dai dettagli.
+Cioè: non c'è niente che potrebbe andare storto, ma non sto vedendo che tutto va dritto.
+Comunque sospetto che la cosa si chiarirà da sé nei prossimi esercizi.}
+
+\pol[inline]{Ok.
+Quello che trovo nella prossima parte corrobora l'idea, ma continua a non piacermi il modo.}
+
+
+
+
+\subsubsection*{Esperimento-time!}
+
+Immaginiamo di avere un funtore $\iota\colon\cate B\to\cate T$ tra due categorie arricchite su un cosmo di Bénabou $\cate V$, ed un funtore $F\colon\cate B\to\cate V$.
+
+Allora l'estensione
+\[\xymatrix{
+\cate B \ar[d]_\iota \ar[r]^F & \cate V \\
+\cate T \ar[ur]_{\text{Lan}_\iota F}
+}\]
+esiste e si calcola con una cofine ed il tensore naturale di $\cate V$:
+\[ \text{Lan}_\iota F \cong \int^b \cate T(\iota b,-)\cdot Fb \]
+
+Diremo che $\cate B$ è una {\it base} per $\cate T$ se valgono
+\[\begin{array}{rcl}
+\cate B(-,=) &\cong& \cate T (\iota-,\iota=) \\
+\cate T(-,=) &\cong& \int^b \cate T(-,\iota b)\cdot\cate T(\iota b,=)
+\end{array}\]
+
+In tal caso $\text{Lan}_\iota$ è un'equivalenza.
+Infatti, denotando con $\iota^\star$ la precomposizione,
+\[\begin{array}{rclcl}
+\left[\iota^\star\circ\text{Lan}_\iota\right]F
+&\cong&
+\int^b \cate T(\iota b,\iota-)\cdot Fb \\
+&\cong&
+\int^b \cate B(b,-)\cdot Fb
+&\cong&
+F \\
+\left[\text{Lan}_\iota\circ\iota^\star\right]F
+&\cong&
+\int^b\cate T(\iota b,-)\cdot F\iota b \\
+&\cong&
+\int^b\cate T(\iota b,-)\cdot\int^u\cate T(u,\iota b)\cdot Fu \\
+&\cong&
+\int^u\left(\int^b\cate T(u,\iota b)\cdot\cate T(\iota b,-)\right)\cdot Fu \\
+&\cong&
+\int^u\cate T(u,-)\cdot Fu
+&\cong&
+F
+\end{array}\]
+
+
+
+
+\subsubsection*{Parte tre}
+
+La situazione da trattare è un caso particolare di quanto appena visto:
+\[\xymatrix{
+\mathfrak B^\text{op}(X) \ar[d]_{\iota^\text{op}} \ar[r]^F & \Sets \\
+\cate{Op}^\text{op}(X) \ar[ur]_{\text{Lan}_{\iota^\text{op}}F}
+}\]
+
+La prima condizione di base è soddisfatta.
+Infatti per dualità è equivalente all'ovviamente vera
+\[ \mathfrak B(X)(-,=) \cong \cate{Op}(X)(\iota-,\iota=) \]
+
+La seconda condizione di base è equivalente per dualità a
+\[ \cate{Op}(-,=) \cong \int^b\cate{Op}(X)(-,\iota b)\times\cate{Op}(X)(\iota b,=) \]
+Se mostriamo che vale, abbiamo vinto.
+Come fare?
+
+
+\pol[inline]{Vabbuò.
+Faccio il conto scemo, senza girarci tanto attorno.}
+
+La cofine della condizione da verificare è il coequalizzatore di
+\[\xymatrix{
+\coprod_{b\to b'}\cate{Op}(X)(u,\iota b)\times\cate{Op}(X)(\iota b',v) \ar@<-.5ex>[r]\ar@<.5ex>[r] &
+\coprod_b \cate{Op}(X)(u,\iota b)\times\cate{Op}(X)(\iota b,v)
+}\]
+D'altra parte tutte le categorie coinvolte sono posetali e le componenti dei coprodotti sono vuote o singoletti.
+Eliminando identità di prodotti e coprodotti possiamo riscrivere
+\[\xymatrix{
+\coprod_{b,b'\colon u\to\iota b\to\iota b'\to v}\star \ar@<-.5ex>[r]\ar@<.5ex>[r] &
+\coprod_{b\colon u\to\iota b\to v} \star
+}\]
+L'unico modo di coequalizzare tutte le frecce, se esistono, è mandarle in un singoletto.
+Se invece $v\to u$ non è l'identità, non esistono frecce da equalizzare.
+Pertanto concludiamo che un coequalizzatore è $\cate{Op}(u,v)$ ed abbiamo quanto desiderato.
+
+Quanto detto finora riguarda prefasci.
+Parliamo ora di fasci.
