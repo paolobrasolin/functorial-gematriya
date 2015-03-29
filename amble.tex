@@ -106,7 +106,8 @@
 
 \newcounter{exercise}
 
-\renewcommand*\theexercise{Exercise~\arabic{exercise}}
+\usepackage{currfile}
+\renewcommand*\theexercise{Exercise~\arabic{exercise}~(\currfilename)}
 
 \makeatletter
 \mdfdefinestyle{exercisestyle}{%
